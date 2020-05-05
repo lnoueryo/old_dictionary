@@ -1,0 +1,84 @@
+body {
+  color: #000;
+  background-color: #f5efe9;
+}
+
+.header .logo {
+  width: 120px;
+  height: 82px;
+}
+
+.headline .caption {
+  position: relative;
+  width: 350px;
+}
+
+.headline .caption .image img {
+  width: 100%;
+}
+
+.headline .caption .title {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.headline .caption .title h1 {
+  color: #fff;
+  font-size: 1.2em;
+}
+
+.headline .caption .body {
+  font-size: 0.8em;
+}
+
+.posts .post .date {
+  font-size: 0.6em;
+  color: #999999;
+}
+
+.posts .post .title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.posts .post .body {
+  font-size: 0.8em;
+}
+
+.posts .post .image img {
+  width: 250px;
+}
+
+select {
+  color: #f00;
+}
+
+select option {
+  color: #4f4f4f;
+}
+
+select option:first-child {
+  display: none;
+}
+
+.header {
+    background-color: #ea9034;
+  }
+
+.trim {
+    overflow: hidden;
+    width: 80px;/* トリミングしたい枠の幅 */
+    height: 80px;/* トリミングしたい枠の高さ */
+    object-fit: contain;
+}
+
+.front_trim {
+    overflow: hidden;
+    width: 200px;/* トリミングしたい枠の幅 */
+    height: 300px;/* トリミングしたい枠の高さ */
+    object-fit: contain;
+}
+
