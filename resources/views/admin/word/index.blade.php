@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="admin-news col-md-12 mx-auto">
+            <div class="col-md-12 mx-auto">
                 <div class="row">
                     <table class="table table-dark">
                         <thead>
@@ -43,22 +43,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($posts as $word)
+                            @foreach($posts as $name)
                                 <tr>
-                                    <td>{{ $word->id }}</td>
-                                    <td>{{ Str::limit($word->name, 15) }}</td>
-                                    <td>{{ Str::limit($word->language, 15) }}</td>
-                                    <td>{{ Str::limit($word->phonetic_symbol, 15) }}</td>
-                                    <td>{{ Str::limit($word->parts_of_speech, 15) }}</td>
-                                    <td>{{ Str::limit($word->meaning, 15) }}</td>
-                                    <td><img src="{{ asset('storage/image/' . $word->image_path) }}" class="trim"></td>
-                                    <td>{{ Str::limit($word->sound_path, 10) }}</>
+                                    <td>{{ $name->id }}</td>
+                                    <td>{{ Str::limit($name->name, 15) }}</td>
+                                    <td>{{ Str::limit($name->language, 15) }}</td>
+                                    <td>{{ Str::limit($name->phonetic_symbol, 15) }}</td>
+                                    <td>{{ Str::limit($name->parts_of_speech, 15) }}</td>
+                                    <td>{{ Str::limit($name->meaning, 15) }}</td>
+                                    <td><img src="{{ asset('storage/image/' . $name->image_path) }}" class="trim"></td>
+                                    <td>{{ Str::limit($name->sound_path, 10) }}</td>
                                     <td>
                                         <div>
-                                            <a href="{{ action('Admin\WordController@edit', ['id' => $word->id]) }}">編集</a>
+                                            <a href="{{ action('Admin\WordController@edit', ['id' => $name->id]) }}">編集</a>
                                         </div>
                                         <div>
-                                            <a href="{{ action('Admin\WordController@delete', ['id' => $word->id]) }}">削除</a>
+                                            <a href="{{ action('Admin\WordController@delete', ['id' => $name->id]) }}">削除</a>
                                         </div>
                                     </td>
                                 </tr>

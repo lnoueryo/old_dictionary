@@ -1,14 +1,12 @@
-@charset "UTF-8";
-
 body {
   background-repeat: no-repeat;
   background-position: center;
-  background-color: #000;
-  color: #fff;
+  background-color: rgb(196, 173, 173);
+  color: white;
 }
 
 .navbar-laravel {
-  background-color: #000;
+  background-color: black;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
@@ -41,18 +39,25 @@ body {
   background-color: rgba(0, 0, 0, 0.25);
 }
 
-.trim {
-  overflow: hidden;
-  width: 80px;
-  /* トリミングしたい枠の幅 */
-  height: 80px;
-  /* トリミングしたい枠の高さ */
-  -o-object-fit: contain;
-     object-fit: contain;
+select {
+    color: #f00;
+  }
+
+  select option {
+    color: #4f4f4f;
+  }
+
+  select option:first-child {
+    display: none;
+  }
+
+  .trim {
+    overflow: hidden;
+    width: 80px;/* トリミングしたい枠の幅 */
+    height: 80px;/* トリミングしたい枠の高さ */
+    object-fit: contain;
 }
 
-.table th,
-.table td {
-  vertical-align: middle;
-}
-
+.table th, .table td {
+    vertical-align: middle;
+    }

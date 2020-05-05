@@ -18,6 +18,7 @@ class Name extends Model
 
     public function histories()
     {
+
       return $this->hasMany('App\History');
 
     }

@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.front')
 @section('title', 'ニュースの新規作成')
 
 @section('content')
@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-8 offset-2">
             <h2></h2>
-            <form action="{{ action('Front\WordController@add') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ action('Front\WordController@create') }}" method="post" enctype="multipart/form-data">
                 @if (count($errors) > 0)
                     <ul>
                         @foreach($errors->all() as $e)
@@ -64,8 +64,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="form-group row">
-                    <label class="col-md-1" for="myImage">画像</label>
+                <div class="form-group row">
+                    <label class="col-md-1" for="image_path">画像</label>
                     <div class="col-md-10">
                         <input type="file" id="myImage" accept="image/*" class="form-control-file" name="image">
                         <div class="form-group row">
@@ -73,13 +73,7 @@
                             <p class="m-1">※単語に関係のある画像を選択して下さい</p>
                         </div>
                     </div>
-                </div> -->
-                <div class="form-group row">
-                        <label class="col-md-2" for="title">画像</label>
-                        <div class="col-md-10">
-                            <input type="file" class="form-control-file" name="image">
-                        </div>
-                    </div>
+                </div>
                 {{ csrf_field() }}
                 <input type="submit" class="btn btn-primary col-md-3 offset-md-1" value="登録">
             </form>

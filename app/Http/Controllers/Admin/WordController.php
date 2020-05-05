@@ -23,21 +23,23 @@ class WordController extends Controller
 
   public function update(Request $request)
   {
-      $this->validate($request, Name::$rules);
-      $name = Name::find($request->id);
-      $name_form = $request->all();
-      if (isset($name_form['image'])) {
-        $path = $request->file('image')->store('public/image');
-        $name->image_path = basename($path);
-        unset($name_form['image']);
-      } elseif (isset($request->remove)) {
-        $name->image_path = null;
-        unset($news_form['remove']);
-      }
-      $name_form = $request->all();
-      unset($name_form['_token']);
 
-      $name->fill($name_form)->save();
+      $this->validate($request, Name::$rules);
+        $name = Name::find($request->id);
+        $name_form = $request->all();
+        if ($request->remove == 'true') {
+            $name_form['image_path'] = null;
+        } elseif ($request->file('image')) {
+            $path = $request->file('image')->store('public/image');
+            $name_form['image_path'] = basename($path);
+        } else {
+            $name_form['image_path'] = $name->image_path;
+        }
+
+        unset($name_form['_token']);
+        unset($name_form['image']);
+        unset($name_form['remove']);
+        $name->fill($name_form)->save();
 
       $history = new History;
       $history->name_id = $name->id;

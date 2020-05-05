@@ -26,18 +26,19 @@ class WordController extends Controller
     }
 
     public function create(Request $request) {
-              // 以下を追記
-      // Varidationを行う
+
       $this->validate($request, Name::$rules);
             $name = new Name;
             $form = $request->all();
-              $path = $request->file('image')->store('public/image');
-              $name->image_path = basename($path);
 
+            if (isset($form['image'])) {
+                $path = $request->file('image')->store('public/image');
+                $name->image_path = basename($path);
+              } else {
+                  $name->image_path = null;
+              }
             unset($form['_token']);
-            // フォームから送信されてきたimageを削除する
             unset($form['image']);
-            // データベースに保存する
             $name->fill($form);
             $name->save();
 

@@ -71,18 +71,13 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="form-group row">
-                        <label class="col-md-2" for="image">画像</label>
+                        <label class="col-md-1" for="image_path">画像</label>
                         <div class="col-md-10">
-                            <input type="file" class="form-control-file" name="image">
-                            <div class="form-text text-info">
-                                設定中: {{ $name_form->image_path }}
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" name="remove" value="true">画像を削除
-                                </label>
+                            <input type="file" id="myImage" accept="image/*" class="form-control-file" name="image">
+                            <div class="form-group row">
+                                <img id="preview" class="trim m-3" src="{{ asset('storage/image/' . $name_form->image_path) }}">
+                                <p class="m-1">※単語に関係のある画像を選択して下さい</p>
                             </div>
                         </div>
                     </div>

@@ -38,3 +38,14 @@ body {
   .login-body {
     background-color: rgba(0, 0, 0, 0.25);
   }
+
+  .trim {
+    overflow: hidden;
+    width: 80px;/* トリミングしたい枠の幅 */
+    height: 80px;/* トリミングしたい枠の高さ */
+    object-fit: contain;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+    }
