@@ -21,6 +21,7 @@
 
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/front.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/dictionary.css') }}">
 
 
     </head>
@@ -81,10 +82,10 @@
             </nav>
             <div class="searchbar col-md-12 p-2">
                 <div class="col-md-8 offset-md-4">
-                    <form action="{{ action('Front\HomeController@index') }}" method="get">
+                    <form action="{{ action('PracticeController@index') }}" method="get">
                         <div class="form-group row">
                             <div class="col-md-4">
-                                <input type="text" class="form-control" name="cond_title" placeholder="単語を検索">
+                                <input type="text" class="form-control" name="cond_name" placeholder="単語を検索">
                             </div>
                             <div class="col-md-2">
                                 {{ csrf_field() }}

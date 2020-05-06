@@ -12,15 +12,13 @@ class WordController extends Controller
 {
     public function index(Request $request)
     {
-        $posts = Name::all()->sortByDesc('updated_at');
-
-        if (count($posts) > 0) {
-            $headline = $posts->shift();
+        $cond_name = $request->cond_name;
+        if ($cond_name != '') {
+            $posts = Name::where('name', $cond_name)->get();
         } else {
-            $headline = null;
+            $posts = Name::all();
         }
-
-        return view('front.word.index', ['headline' => $headline, 'posts' => $posts]);
+        return view('practice', ['posts' => $posts, 'cond_name' => $cond_name]);
 
     }
 

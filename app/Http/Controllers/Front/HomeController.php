@@ -21,5 +21,5 @@ class HomeController extends Controller
 
         return view('front.home', ['headline' => $headline, 'posts' => $posts]);
     }
-    
+
 }

@@ -40,3 +40,7 @@ Auth::routes();
 
 Route::get('/', 'Front\HomeController@index')->middleware('auth')->name('/');
 
+
+
+// 練習
+Route::get('practice', 'PracticeController@index');
