@@ -58,13 +58,13 @@ class WordController extends Controller
 
     public function index(Request $request)
   {
-      $cond_title = $request->cond_title;
-      if ($cond_title != '') {
-          $posts = Name::where('title', $cond_title)->get();
+      $cond_name = $request->cond_name;
+      if ($cond_name != '') {
+          $posts = Name::where('name', $cond_name)->get();
       } else {
           $posts = Name::all();
       }
-      return view('admin.word.index', ['posts' => $posts, 'cond_title' => $cond_title]);
+      return view('admin.word.index', ['posts' => $posts, 'cond_name' => $cond_name]);
   }
 
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Front;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Name;
+use App\History;
+use Carbon\Carbon;
 
 class WordController extends Controller
 {
@@ -19,6 +21,7 @@ class WordController extends Controller
         }
 
         return view('front.word.index', ['headline' => $headline, 'posts' => $posts]);
+
     }
 
     public function add() {
@@ -41,6 +44,44 @@ class WordController extends Controller
             unset($form['image']);
             $name->fill($form);
             $name->save();
+
+        return redirect('front/word/add');
+    }
+
+    public function edit(Request $request)
+    {
+        $name = Name::find($request->id);
+        if (empty($name)) {
+          abort(404);
+        }
+        return view('front.word.edit', ['name_form' => $name]);
+    }
+
+
+    public function update(Request $request)
+    {
+
+        $this->validate($request, Name::$rules);
+          $name = Name::find($request->id);
+          $name_form = $request->all();
+          if ($request->remove == 'true') {
+              $name_form['image_path'] = null;
+          } elseif ($request->file('image')) {
+              $path = $request->file('image')->store('public/image');
+              $name_form['image_path'] = basename($path);
+          } else {
+              $name_form['image_path'] = $name->image_path;
+          }
+
+          unset($name_form['_token']);
+          unset($name_form['image']);
+          unset($name_form['remove']);
+          $name->fill($name_form)->save();
+
+        $history = new History;
+        $history->name_id = $name->id;
+        $history->edited_at = Carbon::now();
+        $history->save();
 
         return redirect('front/word/add');
     }

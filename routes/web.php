@@ -23,6 +23,9 @@ Route::group(['prefix' => 'admin'], function() {
 Route::group(['prefix' => 'front'], function() {
     Route::get('word/add', 'Front\WordController@add')->name('add');
     Route::post('word/add', 'Front\WordController@create');
+    Route::get('word/a', 'Front\WordController@index');
+    Route::get('word/edit', 'Front\WordController@edit');
+    Route::post('word/edit', 'Front\WordController@update');
 });
 
 Route::group(['middleware' => 'auth'], function() {
