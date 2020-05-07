@@ -23,7 +23,7 @@
                     　<label class="col-md-1" for="language">言語</label>
                     　<div class="col-md-4">
                         <select type="text" class="form-control" id="language" name="language">
-                        　<option value="{{ $name_form->language }}" selected>{{ $name_form->language }}</option>
+                        　<option value="{{ $name_form->language }}" hidden>{{ $name_form->language }}</option>
                         　<option value="日本語">日本語</option>
                         　<option value="英語">英語</option>
                         　<option value="ドイツ語">ドイツ語</option>
@@ -43,8 +43,8 @@
                     　</div>
                     　<label class="col-md-1" for="parts_of_speech">品詞</label>
                     　<div class="col-md-4">
-                        <select class="form-control" id="parts of speech" name="parts_of_speech" value="{{ $name_form->parts_of_speech }}">
-                        　<option value="{{ $name_form->parts_of_speech }}" selected>{{ $name_form->parts_of_speech }}</option>
+                        <select class="form-control" id="parts_of_speech" name="parts_of_speech" value="{{ $name_form->parts_of_speech }}">
+                        　<option value="{{ $name_form->parts_of_speech }}" hidden>{{ $name_form->parts_of_speech }}</option>
                         　<option value="動詞">動詞</option>
                         　<option value="名詞">名詞</option>
                         　<option value="形容詞">形容詞</option>
@@ -74,7 +74,7 @@
                     <div class="form-group row">
                         <label class="col-md-1" for="image_path">画像</label>
                         <div class="col-md-10">
-                            <input type="file" id="myImage" accept="image/*" class="form-control-file" name="image">
+                            <input type="file" id="image_path" accept="image/*" class="form-control-file" name="image">
                             <div class="form-group row">
                                 <img id="preview" class="trim m-3" src="{{ asset('storage/image/' . $name_form->image_path) }}">
                                 <p class="m-1">※単語に関係のある画像を選択して下さい</p>

@@ -12,6 +12,7 @@ class PracticeController extends Controller
       $cond_name = $request->cond_name;
       if ($cond_name != '') {
           $posts = Name::where('name', $cond_name)->get();
+
       } else {
           $posts = Name::all();
       }

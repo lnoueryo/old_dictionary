@@ -23,18 +23,29 @@ Route::group(['prefix' => 'admin'], function() {
 Route::group(['prefix' => 'front'], function() {
     Route::get('word/add', 'Front\WordController@add')->name('add');
     Route::post('word/add', 'Front\WordController@create');
-    Route::get('word/a', 'Front\WordController@index');
+    Route::get('word/index', 'Front\WordController@index');
     Route::get('word/edit', 'Front\WordController@edit');
     Route::post('word/edit', 'Front\WordController@update');
+    Route::get('word/delete', 'Front\WordController@delete');
+
 });
 
-Route::group(['middleware' => 'auth'], function() {
+// FrontCategories
+Route::group(['prefix' => 'front'], function() {
     Route::get('categories', 'Front\CategoriesController@categories')->name('categories');
 });
 
-Route::group(['middleware' => 'auth'], function() {
+// FrontFlashCard
+Route::group(['prefix' => 'front'], function() {
     Route::get('flashcard', 'Front\FlashCardController@flashcard')->name('flashcard');
 });
+
+// FrontContact
+Route::group(['prefix' => 'front'], function() {
+    Route::get('contact/add', 'Front\ContactController@add')->name('contact');
+    Route::post('contact/add', 'Front\ContactController@create');
+});
+
 
 Auth::routes();
 
@@ -44,3 +55,4 @@ Route::get('/', 'Front\HomeController@index')->middleware('auth')->name('/');
 
 // 練習
 Route::get('practice', 'PracticeController@index');
+

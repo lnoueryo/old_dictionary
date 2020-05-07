@@ -13,7 +13,7 @@
                             <div class="caption mx-auto">
                                 <div class="image">
                                     @if ($headline->image_path)
-                                        <img src="{{ asset('storage/image/' . $headline->image_path) }}" class="front_trim">
+                                    <a href="{{ action('Front\WordController@edit', ['id' => $headline->id]) }}"><img src="{{ asset('storage/image/' . $headline->image_path) }}" class="front_trim"></a>
                                     @endif
                                 </div>
                                 <div class="title p-2">

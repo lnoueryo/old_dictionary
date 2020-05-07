@@ -37,9 +37,11 @@
                                 <td width="7%">Language</td>
                                 <td width="10%">Phonetic symbol</td>
                                 <td width="10%">Parts of speech</td>
-                                <td width="15%">Meaning</td>
+                                <td width="10%">Meaning</td>
                                 <td width="15%">Image_path</td>
                                 <td width="10%">Sound_path</td>
+                                <td width="5%"></td>
+                                <td width="10%">Revision history</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -61,6 +63,7 @@
                                             <a href="{{ action('Admin\WordController@delete', ['id' => $name->id]) }}">削除</a>
                                         </div>
                                     </td>
+                                    <td>username datetime</td>
                                 </tr>
                             @endforeach
                         </tbody>

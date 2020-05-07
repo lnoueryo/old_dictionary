@@ -1,4 +1,5 @@
 @extends('layouts.front')
+<link rel="stylesheet" href="{{ asset('css/contents/word.css') }}">
 @section('title', 'ニュースの新規作成')
 
 @section('content')
@@ -67,14 +68,14 @@
                 <div class="form-group row">
                     <label class="col-md-1" for="image_path">画像</label>
                     <div class="col-md-10">
-                        <input type="file" id="myImage" accept="image/*" class="form-control-file" name="image">
+                        <input type="file" id="image_path" accept="image/*" class="form-control-file" name="image">
                         <div class="form-group row">
                             <img id="preview" class="trim m-3">
                             <p class="m-1">※単語に関係のある画像を選択して下さい</p>
                         </div>
                     </div>
                 </div>
-                <div class="form-group row">
+                <!-- <div class="form-group row">
                     <label class="col-md-1" for="image_path">画像</label>
                     <div class="col-md-10">
                 <div class="container">
@@ -115,7 +116,7 @@
     <img id="blah" src="#" alt="your image" />
 </div>
 <div id="cropped_result"></div>        // Cropped image to display (only if u want)
-<button id="crop_button">Crop</button> // Will trigger crop event
+<button id="crop_button">Crop</button> // Will trigger crop event -->
 
                 {{ csrf_field() }}
                 <input type="submit" class="btn btn-primary col-md-3 offset-md-1" value="登録">

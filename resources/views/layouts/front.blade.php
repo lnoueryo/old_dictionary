@@ -21,7 +21,6 @@
 
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/front.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/dictionary.css') }}">
 
 
     </head>
@@ -47,6 +46,9 @@
                             </li>
                             <li class="nav-item">
                             <a class="nav-link" href="{{ route('flashcard') }}">Flashcard</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link" href="{{ route('contact') }}">contact</a>
                             </li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
@@ -82,7 +84,7 @@
             </nav>
             <div class="searchbar col-md-12 p-2">
                 <div class="col-md-8 offset-md-4">
-                    <form action="{{ action('PracticeController@index') }}" method="get">
+                    <form action="{{ action('Front\WordController@index') }}" method="get">
                         <div class="form-group row">
                             <div class="col-md-4">
                                 <input type="text" class="form-control" name="cond_name" placeholder="単語を検索">

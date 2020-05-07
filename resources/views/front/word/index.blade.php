@@ -1,103 +1,75 @@
-<!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.front')
+<link rel="stylesheet" href="{{ asset('css/contents/word.css') }}">
+@section('title', '登録済みニュースの一覧')
 
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        <title></title>
-
-        <script src="{{ asset('js/app.js') }}" defer></script>
-        <script src="{{ asset('js/ex01.js') }}" defer></script>
-
-        <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.css" integrity="sha256-jKV9n9bkk/CTP8zbtEtnKaKf+ehRovOYeKoyfthwbC8=" crossorigin="anonymous" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.js" integrity="sha256-CgvH7sz3tHhkiVKh05kSUgG97YtzYNnWt6OXcmYzqHY=" crossorigin="anonymous"></script>
-
-
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <link rel="stylesheet" href="{{ asset('css/dictionary.css') }}">
-
-
-    </head>
-    <body>
-        <div id="app">
-        <div class="header">
-            <nav class="navbar navbar-expand-lg navbar-dark">
-                <div class="container">
-                    <a class="navbar-brand" href="{{ route('/') }}"><h2>𒄀𒋏𒄊</h2></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
-                            <a class="nav-link" href="{{ route('/') }}">Home</a>
-                            </li>
-                            <li class="nav-item">
-                            <a class="nav-link" href="{{ route('add') }}">Add</a>
-                            </li>
-                            <li class="nav-item">
-                            <a class="nav-link" href="{{ route('categories') }}">Categories</a>
-                            </li>
-                            <li class="nav-item">
-                            <a class="nav-link" href="{{ route('flashcard') }}">Flashcard</a>
-                            </li>
-                        </ul>
-                        <ul class="navbar-nav ml-auto">
-                            <div class="flex-center position-ref full-height">
-                                @if (Route::has('login'))
-                                    <div class="top-right links">
-                                        @auth
-                                            <li class="nav-item dropdown">
-                                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                                </a>
-                                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                                        {{ __('Logout') }}
-                                                    </a>
-                                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                        @csrf
-                                                    </form>
-                                                </div>
-                                            </li>
-                                            @else
-                                                <a href="{{ route('login') }}">Login</a>
-                                                @if (Route::has('register'))
-                                                <a href="{{ route('register') }}">Register</a>
-                                            @endif
-                                        @endauth
-                                    </div>
-                                @endif
-                            </div>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            <div class="searchbar col-md-12 p-2">
-                <div class="col-md-8 offset-md-4">
-                    <form action="{{ action('Front\HomeController@index') }}" method="get">
-                        <div class="form-group row">
-                            <div class="col-md-4">
-                                <input type="text" class="form-control" name="cond_title" placeholder="単語を検索">
-                            </div>
-                            <div class="col-md-2">
-                                {{ csrf_field() }}
-                                <input type="submit" class="btn btn-primary" value="検索">
-                            </div>
+@section('content')
+    <div class="container">
+        <!-- <div class="row">
+            <h2>単語一覧</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <a href="{{ action('Front\WordController@add') }}" role="button" class="btn btn-primary">新規作成</a>
+            </div>
+            <div class="col-md-8">
+                <form action="{{ action('Admin\WordController@index') }}" method="get">
+                    <div class="form-group row">
+                        <label class="col-md-2">タイトル</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" name="cond_name" value={{ $cond_name }}>
                         </div>
-                    </form>
+                        <div class="col-md-2">
+                            {{ csrf_field() }}
+                            <input type="submit" class="btn btn-primary" value="検索">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div> -->
+        <!-- <div class="row">
+            <div class="col-md-12 mx-auto">
+                <div class="row">
+                    <table class="table table-dark">
+                        <thead>
+                            <tr>
+                                <td width="2%">ID</td>
+                                <td width="10%">Name</td>
+                                <td width="7%">Language</td>
+                                <td width="10%">Phonetic symbol</td>
+                                <td width="10%">Parts of speech</td>
+                                <td width="15%">Meaning</td>
+                                <td width="15%">Image_path</td>
+                                <td width="10%">Sound_path</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($posts as $name)
+                                <tr>
+                                    <td>{{ $name->id }}</td>
+                                    <td>{{ Str::limit($name->name, 15) }}</td>
+                                    <td>{{ Str::limit($name->language, 15) }}</td>
+                                    <td>{{ Str::limit($name->phonetic_symbol, 15) }}</td>
+                                    <td>{{ Str::limit($name->parts_of_speech, 15) }}</td>
+                                    <td>{{ Str::limit($name->meaning, 15) }}</td>
+                                    <td><img src="{{ asset('storage/image/' . $name->image_path) }}" class="trim"></td>
+                                    <td>{{ Str::limit($name->sound_path, 10) }}</td>
+                                    <td>
+                                        <div>
+                                            <a href="{{ action('Admin\WordController@edit', ['id' => $name->id]) }}">編集</a>
+                                        </div>
+                                        <div>
+                                            <a href="{{ action('Admin\WordController@delete', ['id' => $name->id]) }}">削除</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </div>
-            <main class="py-4">
-            <div class="col-8 offset-2">
-            <div id="summary" class="mainBlock non-member hlt_SUMRY">
+        </div> -->
+        <div class="col-md-8 offset-md-2">
+            <div id="summary" class="mainBlock non-member hlt_SUMRY col-md-12">
                 <div class="addLmFdWr" id="addLmFdWrHdId">
                     <table class="summaryTbl">
                         <tbody>
@@ -105,7 +77,7 @@
                                 <td class="summaryL">
                                     <h1 title="giveとは 意味・読み方・使い方">
                                         <div>
-                                            <span id="h1Query">{{ Str::limit($headline->name, 70) }}</span>
+                                            <span id="h1Query">{{ Str::limit($name->name, 15) }}</span>
                                             <span id="h1Suffix"></span>
                                         </div>
                                         <div class="h1keywords"></div>
@@ -116,18 +88,31 @@
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <div id="ePsdQc"></div>
-                                                    <i class="fa fa-volume-up contentTopAudioIcon">
+                                                    <div id="ePsdQc">
+                                                    <!-- <i class="fa fa-volume-up contentTopAudioIcon">
                                                         <audio class="contentAudio" controls="controls" preload="none">
                                                             <source src="https://weblio.hs.llnwd.net/e7/img/dict/kenej/audio/S-A52BACC_E-A52D540.mp3" type="audio/mpeg">
                                                         </audio>
-                                                    </i>
+                                                    </i> -->
+                                                    </div>
                                                 </td>
                                                 <td>
                                                     <div id="ePsdDl">
                                                         <a href="https://weblio.hs.llnwd.net/e7/img/dict/kenej/audio/S-A52BACC_E-A52D540.mp3" id="audioDownloadPlayUrl">
-                                                        <i class="fa fa-play-circle"></i><br>
+                                                        <!-- <i class="fa fa-play-circle"></i><br> -->
                                                         </a>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div id="add">
+                                                        <a href="https://weblio.hs.llnwd.net/e7/img/dict/kenej/audio/S-A52BACC_E-A52D540.mp3" id="audioDownloadPlayUrl" class="addUwl">>
+                                                        <img src="{{ asset('icon/play.png') }}">
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div id="edit">
+                                                    <a href="{{ action('Front\WordController@edit', ['id' => $name->id]) }}" class="addUwl"><img src="{{ asset('icon/edit.png') }}"></a>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -138,11 +123,17 @@
                                                 <td>
                                                     <span>プレーヤー再生</span>
                                                 </td>
+                                                <td>
+                                                    <span>プレーヤー再生</span>
+                                                </td>
+                                                <td>
+                                                    <span>編集</span>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </td>
-                                <td class="pin-icon-cell">
+                                <!-- <td class="pin-icon-cell">
                                     <table>
                                         <tbody>
                                             <tr>
@@ -162,9 +153,11 @@
                                     <div class="error">追加できません(登録数上限)</div>
                                     <div class="commonBtn wlaBtnI" id="addUwl" data-encquery="give">
                                         <img src="https://weblio.hs.llnwd.net/e7/img/icons/addWordlist.png" alt="">
-                                        <span class="gtm-addUwl-str">編集</span>
+                                        <div>
+                                            <a href="{{ action('Admin\WordController@edit', ['id' => $name->id]) }}"><img src="icon/edit.png"></a>
+                                        </div>
                                     </div>
-                                </td>
+                                </td> -->
                             </tr>
                         </tbody>
                     </table>
@@ -175,7 +168,7 @@
                                     <td>
                                         <b class="squareCircle description">主な意味</b>
                                     </td>
-                                    <td class="content-explanation ej">{{ Str::limit($headline->meaning, 650) }}</td>
+                                    <td class="content-explanation ej">{{ Str::limit($name->meaning, 15) }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -189,7 +182,7 @@
                                     <b class="squareCircle description">コア</b>
                                 </td>
                                 <td>
-                                    <img src="{{ asset('storage/image/' . $headline->image_path) }}" alt="give01.jpg">
+                                    <img src="{{ asset('storage/image/' . $name->image_path) }}">
                                 </td>
                                 <td class="eGCoreDta">
                                     <p>自分のところから何かを出す</p>
@@ -228,34 +221,5 @@
                 </div>
             </div>
         </div>
-
-
-            <div class="container">
-                <hr color="#c0c0c0">
-                <div class="row">
-                    <div class="headline col-md-10 mx-auto">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="caption mx-auto">
-                                    <div class="image">
-                                        <img src="{{ asset('storage/image/' . $headline->image_path) }}" class="front_trim">
-                                    </div>
-                                    <div class="title p-2">
-                                        <h1>{{ Str::limit($headline->name, 70) }}</h1>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="body mx-auto">{{ Str::limit($headline->meaning, 650) }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-                        </main>
-                    </div>
-                    
-                </body>
-            </html>
-
+    </div>
+@endsection

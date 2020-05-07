@@ -101,6 +101,9 @@ $(function () {
 //     }
 // });
 
+$('select#language').children('option[value=0]').remove();
+$('select#parts_of_speech').children('option[value={{ $name_form->parts_of_speech }}]').remove();
+
 $("#genre").change(function () {
   var genre_val = $("#genre").val();
 
@@ -140,7 +143,7 @@ $(document).on("click", ".del", function () {
     target.remove();
   }
 });
-$('#myImage').on('change', function (e) {
+$('#image_path').on('change', function (e) {
   var reader = new FileReader();
 
   reader.onload = function (e) {

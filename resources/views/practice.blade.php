@@ -112,7 +112,7 @@
                                                 </td>
                                                 <td>
                                                     <div id="edit">
-                                                    <a href="{{ action('Admin\WordController@edit', ['id' => $name->id]) }}" class="addUwl"><img src="icon/edit.png"></a>
+                                                    <a href="{{ action('Front\WordController@edit', ['id' => $name->id]) }}" class="addUwl"><img src="icon/edit.png"></a>
                                                     </div>
                                                 </td>
                                             </tr>
