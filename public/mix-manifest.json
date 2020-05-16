@@ -3,6 +3,10 @@
     "/css/app.css": "/css/app.css",
     "/css/admin.css": "/css/admin.css",
     "/css/front.css": "/css/front.css",
+    "/css/auth.css": "/css/auth.css",
+    "/contents/css/contact.css": "/contents/css/contact.css",
+    "/contents/css/word.css": "/contents/css/word.css",
+    "/js/auth.js": "/js/auth.js",
     "/js/cropper.min.js": "/js/cropper.min.js",
     "/js/ex01.js": "/js/ex01.js"
 }

@@ -75,6 +75,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <!-- <div class="form-group row">
                     <label class="col-md-1" for="image_path">画像</label>
                     <div class="col-md-10">

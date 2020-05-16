@@ -1,50 +1,9 @@
 @charset "UTF-8";
 
-
 body {
   color: #000;
   background-color: #f5efe9;
 }
-
-/* header */
-
-.navbar-laravel {
-    background-color: #000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-  }
-
-  .navbar-brand {
-    color: #fff !important;
-  }
-
-  .nav-link {
-    color: #fff !important;
-  }
-
-  .table-dark {
-    color: #fff;
-  }
-
-  .list-group-item {
-    border-color: #fff;
-    background-color: #000;
-  }
-
-  .login-box {
-    background-color: rgba(0, 0, 0, 0);
-  }
-
-  .login-header {
-    background-color: rgba(0, 0, 0, 0.25);
-  }
-
-  .login-body {
-    background-color: rgba(0, 0, 0, 0.25);
-  }
-
-  .header {
-    background-color: #ea9034;
-  }
 
 .header .logo {
   width: 120px;
@@ -58,18 +17,7 @@ body {
 
 .headline .caption .image img {
   width: 100%;
-
 }
-
-/* main */
-/* 記事 */
-/* .front_trim {
-    overflow: hidden;
-    width: 200px;
-    height: 300px;
-    -o-object-fit: contain;
-       object-fit: contain;
-  } */
 
 .headline .caption .title {
   width: 100%;
@@ -125,7 +73,41 @@ select option:first-child {
 .trim {
   overflow: hidden;
   width: 80px;
+  /* トリミングしたい枠の幅 */
   height: 80px;
+  /* トリミングしたい枠の高さ */
   -o-object-fit: contain;
      object-fit: contain;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.content{
+    margin: 0 auto;
+    padding: 40px;
+}
+.modal{
+    display: none;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+.modal__bg{
+    background: rgba(0,0,0,0.8);
+    height: 100vh;
+    position: absolute;
+    width: 100%;
+}
+.modal__content{
+    background: #fff;
+    left: 50%;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 60%;
 }

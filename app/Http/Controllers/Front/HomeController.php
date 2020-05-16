@@ -22,4 +22,9 @@ class HomeController extends Controller
         return view('front.home', ['headline' => $headline, 'posts' => $posts]);
     }
 
+    public function profile()
+    {
+        return view('front.profile');
+    }
+
 }

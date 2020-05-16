@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<link rel="stylesheet" href="{{ asset('css/auth.css') }}">
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -38,34 +38,48 @@
                                 @enderror
                             </div>
                         </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
+                        <div class="text-row">
+                            <div class="vertical-align col-md-3 offset-4">
+                            <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                <label class="form-check-label" for="remember">
+                                    {{ __('Remember Me') }}
+                                </label>
                             </div>
                         </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
+                        <div class="row">
+                            <div class="col-md-6 offset-4 mb-3">
+                                <button type="submit" class="btn btn-primary col-md-12">
+                                            {{ __('Login') }}
                                 </button>
-                                
+                            </div>
+                        </div>
+                        <div class="text-row">
+                            <div class="col-md-6 offset-md-5">
 
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+<a class="ml-4" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
-                                @endif
+                                @endif</div></div>
+
+
+
+                        <div class="form-group row mt-4">
+                            <div class="col-md-6 offset-md-4">
+                                <a href="https://www.google.co.jp/" class="btn-square-soft mr-4">
+                                    <img src="{{ asset('icon/google.png') }}" width="24" height="24">
+                                    <span class="g">G</span><span class="o">o</span><span class="o2">o</span><span class="g2">g</span><span class="l">l</span><span class="e">e</span>
+                                </a>
+                                <a href="https://www.facebook.com//" class="btn-square-soft2">
+                                    <img src="{{ asset('icon/facebook.png') }}" width="24" height="24">
+                                    <span class="facebook">Facebook</span>
+                                </a>
                             </div>
                         </div>
-                    </form>
+
+
+
+                                            </form>
                 </div>
             </div>
         </div>

@@ -17,8 +17,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" crossorigin="anonymous" />        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.css" integrity="sha256-jKV9n9bkk/CTP8zbtEtnKaKf+ehRovOYeKoyfthwbC8=" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.js" integrity="sha256-CgvH7sz3tHhkiVKh05kSUgG97YtzYNnWt6OXcmYzqHY=" crossorigin="anonymous"></script>
-
-
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha256-WqU1JavFxSAMcLP2WIOI+GB2zWmShMI82mTpLDcqFUg=" crossorigin="anonymous"></script> -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/front.css') }}">
 
@@ -61,12 +60,15 @@
                                                     {{ Auth::user()->name }} <span class="caret"></span>
                                                 </a>
                                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                    <a class="dropdown-item" id="js-modal-open">
                                                         {{ __('Logout') }}
                                                     </a>
                                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                         @csrf
                                                     </form>
+                                                    <a class="dropdown-item" id="js-modal-open" href="{{ route('profile') }}">
+                                                        {{ __('profile') }}
+                                                    </a>
                                                 </div>
                                             </li>
                                             @else
@@ -97,7 +99,29 @@
                     </form>
                 </div>
             </div>
-</div>
+            <div class="modal js-modal">
+                <div class="modal__bg js-modal-close">
+                <div class="modal__content">
+                    <p>ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p>
+
+                        <div class="float-right">
+
+                                <a class="btn btn-primary" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                Yes
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+
+                            <button class="js-modal-close btn btn-danger">
+                                No
+                            </button>
+                        </div>
+                    </div>
+                </div><!--modal__inner-->
+            </div><!--modal-->
+
+        </div>
             <main class="py-4">
                 @yield('content')
             </main>

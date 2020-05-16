@@ -1,0 +1,19 @@
+/* #card {
+    padding: 2px 2px 15px 2px;
+    width: 726px;
+} */
+
+.content {
+  background-color: #fff;
+  box-shadow: 4px 5px 0 0 #e8e1d2;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 30px;
+  padding-bottom: 10px;
+  width: 800px;
+}
+
+.container h1 {
+  text-align: center;
+}
+

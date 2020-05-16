@@ -1,0 +1,121 @@
+@charset "UTF-8";
+
+#remember {
+    margin-top: 11px;
+
+}
+
+.vertical-align input {
+    vertical-align:-0.15em;
+    margin-right: 2px;
+    text-align: center;
+}
+
+.btn-square-soft {
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  color: #f9a9ae;
+  width: 150px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 5px;
+  text-align: center;
+  overflow: hidden;
+  font-weight: bold;
+  background: linear-gradient(#fed6e3 0%, #ffaaaa 100%);
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.66);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
+}
+
+.btn-square-soft:active {
+  transform: translateY(2px);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+  background-image: linear-gradient(#fed6e3 0%, #ffbcbc 100%);
+
+}
+
+.btn-square-soft:hover {
+  text-decoration: none;
+  color: #8448d354;
+  background: linear-gradient(#fcedfb 0%, #ffbcbc 100%);
+}
+
+.btn-square-soft:hover .g {
+  color: rgba(66, 134, 244, 0.61);
+}
+
+.btn-square-soft:hover .o {
+  color: rgba(219, 69, 55, 0.63);
+}
+
+.btn-square-soft:hover .o2 {
+  color: rgba(244, 179, 0, 0.637);
+}
+
+.btn-square-soft:hover .g2 {
+  color: rgba(66, 134, 244, 0.644);
+}
+
+.btn-square-soft:hover .l {
+  color: rgba(15, 157, 88, 0.651);
+}
+
+.btn-square-soft:hover .e {
+  color: rgba(219, 69, 55, 0.671);
+}
+
+.btn-square-soft2 {
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  color: #355a9262;
+  width: 150px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 5px;
+  text-align: center;
+  overflow: hidden;
+  font-weight: bold;
+  background: #355392;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.66);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
+}
+
+.btn-square-soft2:active {
+  transform: translateY(2px);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+  background-image: linear-gradient(#356592 0%, #355392 100%);
+
+}
+
+.btn-square-soft2:hover {
+  text-decoration: none;
+  color: #355392;
+  background: rgba(24, 118, 242, 0.904);
+}
+
+.btn-square-soft2:hover .g {
+  color: rgba(66, 134, 244, 0.61);
+}
+
+.btn-square-soft2:hover .o {
+  color: rgba(219, 69, 55, 0.63);
+}
+
+.btn-square-soft2:hover .o2 {
+  color: rgba(244, 179, 0, 0.637);
+}
+
+.btn-square-soft2:hover .g2 {
+  color: rgba(66, 134, 244, 0.644);
+}
+
+.btn-square-soft2:hover .l {
+  color: rgba(15, 157, 88, 0.651);
+}
+
+.btn-square-soft2:hover .e {
+  color: rgba(219, 69, 55, 0.671);
+}
+

@@ -77,10 +77,3 @@ option{
     height: 80px;/* トリミングしたい枠の高さ */
     object-fit: contain;
 }
-
-.front_trim {
-    overflow: hidden;
-    width: 200px;/* トリミングしたい枠の幅 */
-    height: 300px;/* トリミングしたい枠の高さ */
-    object-fit: contain;
-}

@@ -50,9 +50,20 @@ Route::group(['prefix' => 'front'], function() {
 Auth::routes();
 
 Route::get('/', 'Front\HomeController@index')->middleware('auth')->name('/');
+Route::get('profile', 'Front\HomeController@profile')->name('profile');
 
+// mail
+// Route::get('sample/mailable/preview', function () {
+//     return new App\Mail\SampleNotification();
+//   });
+//   Route::get('sample/mailable/send', 'SampleController@SampleNotification');
 
+Route::get('/mailsend', 'SampleController@send');
 
 // 練習
 Route::get('practice', 'PracticeController@index');
 
+// mail_pra
+Route::get('/contact', 'Front\ContactController@form')->name('contact');
+Route::post('/contact', 'Front\ContactController@send')->name('contact.send');
+Route::get('/contact/result', 'Front\ContactController@result')->name('front.contact.result');
