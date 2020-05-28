@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.front')
 
 @section('content')
 <div class="container">
@@ -7,16 +7,16 @@
             <form method="POST" action="{{ route('contact.send') }}">
                 {{ csrf_field() }}
 
-                <div class="form-group">
-                    <label for="formInputName">Name</label>
-                    <input type="text" class="form-control" id="formInputName" name="name" value="{{ old('name') }}">
+                {{--  <div class="form-group">
+                    <label for="formInputName">Name</label>  --}}
+                    <input type="hidden" class="form-control" id="formInputName" name="name" value="{{ Auth::user()->name }}">
 
-                    @if ($errors->has('name'))
+                    {{--  @if ($errors->has('name'))
                         <span class="help-block">
                             <strong>{{ $errors->first('name') }}</strong>
                         </span>
                     @endif
-                </div>
+                </div>  --}}
 
                 <div class="form-group">
                     <label for="formInputSubject">Subject</label>

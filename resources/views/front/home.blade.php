@@ -4,6 +4,53 @@
 
 @section('content')
     <div class="container">
+        <div class="col-md-8 offset-md-2">
+            <div id="summary" class="mainBlock non-member hlt_SUMRY col-md-12">
+                <div class="addLmFdWr" id="addLmFdWrHdId">
+                    <div class="title p-2">
+                        @foreach($posts as $post)
+                        @if($post->sound_path == null&&$post->image_path == null)
+                        <a href="{{ action('Front\WordController@edit', ['id' => $post->id]) }}">
+                            <div>
+                                <h1>
+                                    <span class="mr-4">{{ Str::limit($post->name, 70) }}</span>
+                                    <span class="mr-4">{{ Str::limit($post->language, 70) }}</span>
+                                    <span class="mr-4">{{ Str::limit($post->meaning, 70) }}</span>
+                                </h1>
+                            </div>
+                        </a>
+                        <p>No sound/No picture</p>
+                        @elseif($post->sound_path == null&&isset($post->image_path))
+                        <a href="{{ action('Front\WordController@edit', ['id' => $post->id]) }}">
+                            <div>
+                                <h1>
+                                    <span class="mr-4">{{ Str::limit($post->name, 70) }}</span>
+                                    <span class="mr-4">{{ Str::limit($post->language, 70) }}</span>
+                                    <span class="mr-4">{{ Str::limit($post->meaning, 70) }}</span>
+                                </h1>
+                            </div>
+                        </a>
+                        <p>No sound</p>
+                        @elseif($post->image_path == null&&isset($post->sound_path))
+                        <a href="{{ action('Front\WordController@edit', ['id' => $post->id]) }}">
+                            <div>
+                                <h1>
+                                    <span class="mr-4">{{ Str::limit($post->name, 70) }}</span>
+                                    <span class="mr-4">{{ Str::limit($post->language, 70) }}</span>
+                                    <span class="mr-4">{{ Str::limit($post->meaning, 70) }}</span>
+                                </h1>
+                            </div>
+                        </a>
+                        <p>No picture</p>
+                        @endif
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{--  <div class="container">
         <hr color="#c0c0c0">
         @if (!is_null($headline))
             <div class="row">
@@ -17,7 +64,7 @@
                                     @endif
                                 </div>
                                 <div class="title p-2">
-                                    <h1>{{ Str::limit($headline->name, 70) }}音声入力お願いします</h1>
+                                    <h1>{{ Str::limit($headline->name, 70) }}</h1>
                                 </div>
                             </div>
                         </div>
@@ -57,5 +104,5 @@
             </div>
         </div>
     </div>
-    </div>
+    </div>  --}}
 @endsection

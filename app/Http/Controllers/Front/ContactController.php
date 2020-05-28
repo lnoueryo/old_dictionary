@@ -9,42 +9,41 @@ use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
-
     public function add()
     {
         return view('front.contact.add');
     }
 
     public function create()
-     {
-
-      return redirect('front/contact/add');
+    {
+        return redirect('front/contact/add');
     }
 
     public function form()
-        {
-            return view('front.contact.form');
-        }
+    {
+        return view('front.contact.form');
+    }
 
 
 
 
-        public function send(Request $request)
+    public function send(Request $request)
     {
         $rules = [
-            'name' => 'required|string',
+            // 'name' => 'required|string',
             'subject' => 'required',
             'email' => 'required|email',
             'body' => 'required'
         ];
         $this->validate($request, $rules);
 
+        // $to = array('popo62520908@gmail.com', $request->email);
         $to = [
-            ['email' => 'popo62520908@gmail.com', 'name' => '{{ $name }}']
+            ['email' => 'popo62520908@gmail.com']
         ];
 
-        $data = $request->only('name','subject', 'email', 'body');
-        Mail::to($to)->send(new Contact($data));
+        $data = $request->only('subject', 'email', 'body');
+        Mail::to($to)->bcc($request->email)->send(new Contact($data));
 
         return redirect()->route('front.contact.result');
     }
@@ -53,6 +52,6 @@ class ContactController extends Controller
     {
         return view('front.contact.result');
     }
-
-
 }
+// }
+// , 'name' => '{{ $name }}' 'name',

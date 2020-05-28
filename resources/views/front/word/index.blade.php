@@ -83,51 +83,19 @@
                                         <div class="h1keywords"></div>
                                     </h1>
                                 </td>
-                                <td class="summaryC">
-                                    <table>
+                                <td class="pt-3 pl-5">
+                                    <table class="audio pt-3 pl-5">
                                         <tbody>
                                             <tr>
-                                                <td>
-                                                    <div id="ePsdQc">
-                                                    <!-- <i class="fa fa-volume-up contentTopAudioIcon">
-                                                        <audio class="contentAudio" controls="controls" preload="none">
-                                                            <source src="https://weblio.hs.llnwd.net/e7/img/dict/kenej/audio/S-A52BACC_E-A52D540.mp3" type="audio/mpeg">
-                                                        </audio>
-                                                    </i> -->
-                                                    </div>
+                                                <td class="pl-5">
+                                                    <audio src="{{ asset('storage/sound/' . $name->sound_path) }}" class="pl-5" controls>
+                                                        <source src="{{ asset('storage/sound/' . $name->sound_path) }}" type="audio/mpeg">
+                                                    </audio>
                                                 </td>
                                                 <td>
-                                                    <div id="ePsdDl">
-                                                        <a href="https://weblio.hs.llnwd.net/e7/img/dict/kenej/audio/S-A52BACC_E-A52D540.mp3" id="audioDownloadPlayUrl">
-                                                        <!-- <i class="fa fa-play-circle"></i><br> -->
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div id="add">
-                                                        <a href="https://weblio.hs.llnwd.net/e7/img/dict/kenej/audio/S-A52BACC_E-A52D540.mp3" id="audioDownloadPlayUrl" class="addUwl">>
-                                                        <img src="{{ asset('icon/play.png') }}">
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div id="edit">
+                                                    <div id="edit" class="pt-3 pl-4">
                                                     <a href="{{ action('Front\WordController@edit', ['id' => $name->id]) }}" class="addUwl"><img src="{{ asset('icon/edit.png') }}"></a>
                                                     </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span>発音を聞く</span>
-                                                </td>
-                                                <td>
-                                                    <span>プレーヤー再生</span>
-                                                </td>
-                                                <td>
-                                                    <span>プレーヤー再生</span>
-                                                </td>
-                                                <td>
-                                                    <span>編集</span>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -152,7 +120,6 @@
                                 <td class="summaryR">
                                     <div class="error">追加できません(登録数上限)</div>
                                     <div class="commonBtn wlaBtnI" id="addUwl" data-encquery="give">
-                                        <img src="https://weblio.hs.llnwd.net/e7/img/icons/addWordlist.png" alt="">
                                         <div>
                                             <a href="{{ action('Admin\WordController@edit', ['id' => $name->id]) }}"><img src="icon/edit.png"></a>
                                         </div>
@@ -166,7 +133,7 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        <b class="squareCircle description">主な意味</b>
+                                        <b class="squareCircle description">意味</b>
                                     </td>
                                     <td class="content-explanation ej">{{ Str::limit($name->meaning, 15) }}</td>
                                 </tr>
@@ -182,12 +149,12 @@
                                     <b class="squareCircle description">コア</b>
                                 </td>
                                 <td>
-                                    <img src="{{ asset('storage/image/' . $name->image_path) }}">
+                                    {{--  <img src="{{ asset('storage/image/' . $name->image_path) }}">  --}}
                                 </td>
+                                @if(isset($name->image_path))
                                 <td class="eGCoreDta">
-                                    <p>自分のところから何かを出す</p>
-                                    <span>自分のところに「取り込む」のがtake,そこから「出す」のがgive</span>
-                                </td>
+                                    <img src="{{ asset('storage/image/' . $name->image_path) }}" class="trim2">
+                                </td>@endif
                             </tr>
                         </tbody>
                     </table>
@@ -196,22 +163,22 @@
                     <table>
                         <tbody>
                             <tr>
-                                <td>
+                                {{--  <td>
                                     <b class="squareCircle">音節</b>
-                                </td>
-                                <td>
+                                </td>  --}}
+                                {{--  <td>
                                     <span class="syllableEjje">give</span>
-                                </td>
+                                </td>  --}}
                                 <td>
                                     <b class="squareCircle">発音記号・読み方</b>
                                 </td>
                                 <td>
                                     <div id="phoneticEjjeNavi">
                                         <div class="phoneticEjjeWrp">
-                                            <span class="phoneticEjjeSym">/</span>
-                                            <span class="phoneticEjjeDesc">gív</span>
-                                            <span class="phoneticEjjeDc">(米国英語)</span>
-                                            <span class="phoneticEjjeSym">/</span>
+                                            {{--  <span class="phoneticEjjeSym">/</span>  --}}
+                                            <span class="phoneticEjjeDesc">{{ $name->phonetic_symbol }}</span>
+                                            {{--  <span class="phoneticEjjeDc">(米国英語)</span>  --}}
+                                            {{--  <span class="phoneticEjjeSym">/</span>  --}}
                                         </div>
                                     </div>
                                 </td>

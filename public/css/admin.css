@@ -56,3 +56,15 @@ body {
   vertical-align: middle;
 }
 
+
+table.sample td a {
+    text-decoration: none;
+    color: #fff;
+    display: block;       /* リンクをブロックレベル化して表示 */
+    padding: 0px;   /* 内側の余白量を上下に0.6文字分＆左右に1文字分にする */
+ }
+
+ audio {
+     width: 130px;
+     padding-left: 10px;
+    }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Name;
 use App\History;
 use Carbon\Carbon;
+use App\User;
 
 class WordController extends Controller
 {
@@ -64,6 +65,7 @@ class WordController extends Controller
           $posts = Name::where('meaning', $cond_name)->get();
       } else {
           $posts = Name::all();
+          $posts = Name::sortable()->paginate(5);
       }
       return view('admin.word.index', ['posts' => $posts, 'cond_name' => $cond_name]);
   }

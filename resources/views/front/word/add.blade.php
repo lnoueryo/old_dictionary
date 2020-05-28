@@ -1,5 +1,6 @@
 @extends('layouts.front')
-<link rel="stylesheet" href="{{ asset('css/contents/word.css') }}">
+
+
 @section('title', 'ニュースの新規作成')
 
 @section('content')
@@ -8,6 +9,7 @@
         <div class="col-8 offset-2">
             <h2></h2>
             <form action="{{ action('Front\WordController@create') }}" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="{{ Auth::user()->id }}">
                 @if (count($errors) > 0)
                     <ul>
                         @foreach($errors->all() as $e)
@@ -75,8 +77,8 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- <div class="form-group row">
+
+                {{--  <div class="form-group row">
                     <label class="col-md-1" for="image_path">画像</label>
                     <div class="col-md-10">
                 <div class="container">
@@ -116,8 +118,8 @@
 <div class="image_container">
     <img id="blah" src="#" alt="your image" />
 </div>
-<div id="cropped_result"></div>        // Cropped image to display (only if u want)
-<button id="crop_button">Crop</button> // Will trigger crop event -->
+<div id="cropped_result"></div>
+<button id="crop_button">Crop</button>  --}}
 
                 {{ csrf_field() }}
                 <input type="submit" class="btn btn-primary col-md-3 offset-md-1" value="登録">
@@ -125,4 +127,5 @@
         </div>
     </div>
 </div>
-@endsection
+
+@endsection('content')

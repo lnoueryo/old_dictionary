@@ -7,6 +7,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use App\Events\Auth\UserActivationEmail;
+use Illuminate\Support\Str;
+// use Illuminate\Support\Carbon;
+use Carbon\Carbon;
 
 class RegisterController extends Controller
 {
@@ -51,7 +56,8 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'captcha' => 'required|captcha'
         ]);
     }
 
@@ -67,6 +73,21 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'token_activation' => Str::randomNumber(6),
+            'isVerified' => false,
         ]);
+    }
+
+    protected function registered(Request $request, $user)
+    {
+        event(new UserActivationEmail($user));
+
+        // $this->guard()->logout();
+
+        return redirect()->route('verification')->withSuccess('Resistrasisilahkan');
+    }
+
+    public function refreshCaptcha() {
+        return captcha_img('math');
     }
 }

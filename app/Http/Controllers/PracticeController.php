@@ -3,57 +3,62 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Name;
+use App\Memo;
+use App\User;
 
 class PracticeController extends Controller
 {
-    public function index(Request $request)
-  {
-      $cond_name = $request->cond_name;
-      if ($cond_name != '') {
-          $posts = Name::where('name', $cond_name)->get();
+    public function showPractice(Request $request)
+    {
+        $memos = Memo::get();
+        return view("practice", ['memos' => $memos]);
+    }
 
-      } else {
-          $posts = Name::all();
-      }
-      return view('practice', ['posts' => $posts, 'cond_name' => $cond_name]);
-  }
-
-  public function edit(Request $request)
-  {
-      $name = Name::find($request->id);
-      if (empty($name)) {
-        abort(404);
-      }
-      return view('practice.edit', ['name_form' => $name]);
-  }
-
-  public function update(Request $request)
-  {
-
-      $this->validate($request, Name::$rules);
-        $name = Name::find($request->id);
-        $name_form = $request->all();
-        if ($request->remove == 'true') {
-            $name_form['image_path'] = null;
-        } elseif ($request->file('image')) {
-            $path = $request->file('image')->store('public/image');
-            $name_form['image_path'] = basename($path);
+    public function showSubmit($id = 0)
+    {
+        if ($id != 0) {
+            $memo = Memo::where('id', $id)->get()->first();
         } else {
-            $name_form['image_path'] = $name->image_path;
+            $memo = (object) ["id" => 0, "title" => "", "content" => ""];
         }
+        return view("practice2", ['memo' => $memo]);
+    }
 
-        unset($name_form['_token']);
-        unset($name_form['image']);
-        unset($name_form['remove']);
-        $name->fill($name_form)->save();
+    public function postSubmit(Request $request, $id = 0)
+    {
+        $title = $request->input('title');
+        $content = $request->input('content');
+        if ($id == 0) {
+            Memo::create([
+                'title' => $title,
+                'content' => $content
+            ]);
+        } else {
+            $memo = Memo::find($id);
+            $memo->update([
+                'title' => $title,
+                'content' => $content
+            ]);
+        }
+        return redirect('p');
+    }
 
-      $history = new History;
-      $history->name_id = $name->id;
-      $history->edited_at = Carbon::now();
-      $history->save();
+    public function deleteMemo($id)
+{
+    Memo::destroy($id);
+    return redirect()->route('practice');
+}
 
-      return redirect('admin/word');
+
+
+  public function show() {
+
+      return view('front.edit');
   }
 
+// これでも大丈夫
+//   public function show($id) {
+//       $user = User::find($id);
+//       return view('front.edit', ['user'=>$user]);
+//   }
 }

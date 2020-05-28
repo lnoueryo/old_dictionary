@@ -4,22 +4,28 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/jkeyboard.css">
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>@yield('title')</title>
 
-        <script src="{{ asset('js/app.js') }}" defer></script>
         <script src="{{ asset('js/ex01.js') }}" defer></script>
-
         <link rel="dns-prefetch" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" crossorigin="anonymous" />        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.css" integrity="sha256-jKV9n9bkk/CTP8zbtEtnKaKf+ehRovOYeKoyfthwbC8=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.css" integrity="sha256-jKV9n9bkk/CTP8zbtEtnKaKf+ehRovOYeKoyfthwbC8=" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.js" integrity="sha256-CgvH7sz3tHhkiVKh05kSUgG97YtzYNnWt6OXcmYzqHY=" crossorigin="anonymous"></script>
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha256-WqU1JavFxSAMcLP2WIOI+GB2zWmShMI82mTpLDcqFUg=" crossorigin="anonymous"></script> -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/front.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/cropper.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/contents/word.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/jkeyboard.css') }}">
+
+<link  href="/path/to/cropper.css" rel="stylesheet">
+
 
 
     </head>
@@ -28,14 +34,18 @@
         <div class="header">
             <nav class="navbar navbar-expand-lg navbar-dark">
                 <div class="container">
-                    <a class="navbar-brand" href="{{ route('/') }}"><h2>𒄀𒋏𒄊</h2></a>
+                    @if(Auth::user()->admin == false)
+                    <a class="navbar-brand" href="{{ route('home') }}"><h2>𒄀𒋏𒄊</h2></a>
+                    @else
+                    <a class="navbar-brand" href="{{ route('admin') }}"><h2>𒄀𒋏𒄊</h2></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
+                    @endif
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                            <a class="nav-link" href="{{ route('/') }}">Home</a>
+                            <a class="nav-link" href="{{ route('home') }}">Home</a>
                             </li>
                             <li class="nav-item">
                             <a class="nav-link" href="{{ route('add') }}">Add</a>
@@ -57,18 +67,22 @@
                                         @auth
                                             <li class="nav-item dropdown">
                                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                                    {{ Auth::user()->nickname }} <span class="caret"></span>
                                                 </a>
                                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                    <a class="dropdown-item" href="{{ route('profile') }}">
+                                                        {{ __('プロフィール') }}
+                                                    </a>
+                                                    <a class="dropdown-item" href="{{ route('inbox') }}">
+                                                        {{ __('メール') }}
+                                                    </a>
                                                     <a class="dropdown-item" id="js-modal-open">
-                                                        {{ __('Logout') }}
+                                                        {{ __('ログアウト') }}
                                                     </a>
                                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                         @csrf
                                                     </form>
-                                                    <a class="dropdown-item" id="js-modal-open" href="{{ route('profile') }}">
-                                                        {{ __('profile') }}
-                                                    </a>
+
                                                 </div>
                                             </li>
                                             @else
@@ -93,6 +107,7 @@
                             </div>
                             <div class="col-md-2">
                                 {{ csrf_field() }}
+                                {{--  <input type="hidden" name="id" value="{{ Auth::user()->id }}">  --}}
                                 <input type="submit" class="btn btn-primary" value="検索">
                             </div>
                         </div>
@@ -118,10 +133,19 @@
                             </button>
                         </div>
                     </div>
-                </div><!--modal__inner-->
-            </div><!--modal-->
-
+                </div>
+            </div>
         </div>
+
+
+    {{--  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="js/ex01.js"></script>
+    <script>
+        $('#keyboard').jkeyboard({
+          layout: "english",
+          input: $('#search_field')
+        });
+    </script>  --}}
             <main class="py-4">
                 @yield('content')
             </main>

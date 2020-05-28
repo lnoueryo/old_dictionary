@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<meta http-equiv="refresh" content=" 2; url=../">
 @section('content')
 <div class="container">
     <div class="card">

@@ -32,14 +32,14 @@
                     <table class="table table-dark">
                         <thead>
                             <tr>
-                                <td width="2%">ID</td>
-                                <td width="10%">Name</td>
+                                <td width="2%">@sortablelink('id','ID')</td>
+                                <td width="8%">Name</td>
                                 <td width="7%">Language</td>
-                                <td width="10%">Phonetic symbol</td>
-                                <td width="10%">Parts of speech</td>
-                                <td width="10%">Meaning</td>
-                                <td width="15%">Image_path</td>
-                                <td width="10%">Sound_path</td>
+                                <td width="8%">Phonetic symbol</td>
+                                <td width="5%">Parts of speech</td>
+                                <td width="8%">Meaning</td>
+                                <td width="10%">Image_path</td>
+                                <td width="3%" class="text-center">Sound_path</td>
                                 <td width="5%"></td>
                                 <td width="10%">Revision history</td>
                             </tr>
@@ -54,7 +54,7 @@
                                     <td>{{ Str::limit($name->parts_of_speech, 15) }}</td>
                                     <td>{{ Str::limit($name->meaning, 15) }}</td>
                                     <td><img src="{{ asset('storage/image/' . $name->image_path) }}" class="trim"></td>
-                                    <td>{{ Str::limit($name->sound_path, 10) }}</td>
+                                    <td><audio src="{{ asset('storage/sound/' . $name->sound_path) }}" controls></audio></td>
                                     <td>
                                         <div>
                                             <a href="{{ action('Admin\WordController@edit', ['id' => $name->id]) }}">編集</a>

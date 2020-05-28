@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('login.custom') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -38,6 +38,25 @@
                                 @enderror
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label for="captcha" class="col-md-4 col-form-label text-md-right">{{ __('captcha') }}</label>
+
+                            <div class="col-md-6">
+                                <div class="captcha mb-3">
+                                    <span>{!! captcha_img('math') !!}</span>
+                                    <button type="button" class="btn btn-success btn-refresh float-right">Refresh</button>
+                                </div>
+                                <input id="captcha" type="text" class="form-control @error('captcha') is-invalid @enderror" name="captcha" placeholder="Enter captcha" required>
+
+                                @error('captcha')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
                         <div class="text-row">
                             <div class="vertical-align col-md-3 offset-4">
                             <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
@@ -63,14 +82,13 @@
                                 @endif</div></div>
 
 
-
                         <div class="form-group row mt-4">
                             <div class="col-md-6 offset-md-4">
-                                <a href="https://www.google.co.jp/" class="btn-square-soft mr-4">
+                                <a href="auth/google" class="btn-square-soft mr-4">
                                     <img src="{{ asset('icon/google.png') }}" width="24" height="24">
                                     <span class="g">G</span><span class="o">o</span><span class="o2">o</span><span class="g2">g</span><span class="l">l</span><span class="e">e</span>
                                 </a>
-                                <a href="https://www.facebook.com//" class="btn-square-soft2">
+                                <a href="{{url('/redirect')}}" class="btn-square-soft2">
                                     <img src="{{ asset('icon/facebook.png') }}" width="24" height="24">
                                     <span class="facebook">Facebook</span>
                                 </a>

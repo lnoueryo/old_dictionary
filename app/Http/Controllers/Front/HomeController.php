@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Name;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -13,18 +14,32 @@ class HomeController extends Controller
     {
         $posts = Name::all()->sortByDesc('updated_at');
 
-        if (count($posts) > 0) {
-            $headline = $posts->shift();
-        } else {
-            $headline = null;
-        }
+        // if (count($posts) > 0) {
+        //     $headline = $posts->shift();
+        // } else {
+        //     $headline = null;
+        // }
 
-        return view('front.home', ['headline' => $headline, 'posts' => $posts]);
+        return view('front.home', ['posts' => $posts]);
     }
 
-    public function profile()
-    {
+    public function profile()  {
+
         return view('front.profile');
     }
 
+    public function edit(Request $request)
+    {
+        $user = User::find($request->id);
+      if (empty($user)) {
+        abort(404);
+      }
+      return view('front.edit', ['user_form' => $user]);
+  }
+
+  public function keyboard() {
+
+      return view('virtualkeyboard');
+
+  }
 }

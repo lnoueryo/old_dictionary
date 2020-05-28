@@ -6,15 +6,19 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class Contact extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $name;
-    public $subject;
+    // private $name;
+    public $subject1;
     private $email;
     private $body;
+    public $time;
+    public $number;
     // private $data = [];
 
 
@@ -25,10 +29,12 @@ class Contact extends Mailable
      */
     public function __construct($inputs)
     {
-        $this->name = $inputs['name'];
-        $this->subject = $inputs['subject'];
+        // $this->name = $inputs['name'];
+        $this->subject1 = $inputs['subject'];
         $this->email = $inputs['email'];
         $this->body = $inputs['body'];
+        $this->time = date('Y年m月d日 G:i:s D',strtotime(Carbon::now()));
+        $this->number = Str::randomNumber(10);
         // $this->data['inputs'] = $data;
     }
 
@@ -40,13 +46,16 @@ class Contact extends Mailable
     public function build()
     {
 
-        return $this->from($this->name)->view('emails.contact')->with([
-            'name' => $this->name,
-            'subject' => $this->subject,
+        return $this->view('emails.contact')->with([
+            // 'name' => $this->name,
+            'subject' => $this->subject1,
             'email' => $this->email,
             'body'  => $this->body,
+            'time'  => $this->time,
+            'number' => $this->number
+
         ])
-        ->subject($this->subject);
+        ->subject('【Dictionary】お問い合わせいただきありがとうございます。');
         // from：メールの送信者を指定
         // with:テンプレートビューへデータを渡す（メール内でファイル名やIDを表示する場合など）
         // subject:メールタイトルを指定
@@ -54,3 +63,4 @@ class Contact extends Mailable
         // view:メールをHTMLで送付する際にtextメソッドでテンプレートを指定する
     }
 }
+// from($this->name)->
