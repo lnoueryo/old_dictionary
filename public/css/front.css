@@ -2,8 +2,164 @@
 
 body {
   color: #000;
-  background-color: #f5efe9;
+  background:
+	 repeating-linear-gradient(-45deg,
+	 #f5efe9, #f5efe9 10px,
+     transparent 0, transparent 15px);
+     background: linear-gradient(175deg, rgb(255, 204, 153), rgba(233, 154, 51, 0.5)) fixed, url(../icon/heart.jpg) no-repeat;
 }
+
+av {
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    color: #f9a9ae;
+    /* width: 120px; */
+    /* height: 50px; */
+    line-height: 30px;
+    border-radius: 10px;
+    text-align: center;
+    /* overflow: hidden; */
+    font-weight: bold;
+    background: linear-gradient(90deg,#fed6e3 100%, #ffaaaa 1%) fixed, url(../icon/heart.jpg) no-repeat;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.66);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
+    background-blend-mode: overlay;
+    background-size: cover;
+  }
+  
+  .main_nav {
+    /* display: inline-block; */
+    /* position: relative; */
+    text-decoration: none;
+    color: #ffcccc;
+
+    /* レスポンシブ */
+    /* width: 120px; */
+
+    /* ハンバーガーメニューに影響 */
+    /* height: 50px; */
+    line-height: 20px;
+    text-align: center;
+    /* overflow: hidden; */
+    font-weight: bold;
+    /* background: linear-gradient(90deg,rgb(255, 123, 0, 1), rgb(255, 170, 170, 0.6) ); */
+    /* background-color: rgb(255, 204, 153); */
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.66);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.005);
+    background-size: cover;
+  }
+
+  .header nav a {
+    /* color: #564c46; */
+    color: #806850;
+    text-shadow: 0.3px 0.3px 0.3px rgb(50, 41, 0);
+    font-weight: 1500;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.005);
+}
+
+nav a:hover {
+    text-shadow: 1px 1px 1px rgb(50, 41, 0);
+    font-weight: 1500;
+    color:rgb(255, 204, 153);
+}
+
+  .header nav .dropdown a {
+    /* color: #564c46; */
+    color: #806850;
+    text-shadow: 0.3px 0.3px 0.3px rgb(50, 41, 0);
+    font-weight: 1500;
+}
+
+nav .dropdown a:hover {
+
+    font-weight: 1500;
+
+}
+
+nav .dropdown .inside {
+
+    background-image: linear-gradient(rgb(255, 204, 153,0.3) 0%, rgba(255, 125, 125, 0.3) 100%);
+}
+
+nav a h2 {
+    /* color: #564c46; */
+    color: #806850;
+    text-shadow: 1px 1px 1px rgb(50, 41, 0);
+    font-weight: 1500;
+
+}
+
+/* nav .main_nav li:hover {
+
+    background-color: rgba(96, 46, 0, 0.394);
+    color: rgb(255, 204, 153);
+    border-radius: 10px;
+
+} */
+
+nav .main_nav a {
+
+    background: linear-gradient(175deg, rgb(255, 204, 153, 0.3), rgba(233, 154, 51, 0.3));
+    border-radius: 10px;
+}
+
+nav .main_nav a:hover {
+
+    background: linear-gradient(175deg, rgba(96, 46, 0, 0.3), rgba(233, 154, 51, 0.3));
+    /* background-color: rgba(96, 46, 0, 0.394); */
+    color: rgb(255, 204, 153);
+    border-radius: 10px;
+
+}
+
+.header ul {
+    margin-left: 1px; /* 一番左のボーダー幅と同じ値の負のマージン */
+    display: block;
+  }
+
+  .main_nav li {
+    padding-right: 10px;
+    padding-left: 10px;
+    /* padding: 0 10px;
+    display: inline;
+    border-left: 2px solid rgb(255, 204, 110); */
+    display: inline-block;
+  }
+
+.header {
+    /* background: linear-gradient(500deg, #A4CA68, #f4cfd6); */
+    /* background-color: #ea9034; */
+  }
+
+  .header {
+    position: relative;
+    content: '';
+    background: linear-gradient(175deg, rgb(255, 204, 153), rgba(233, 154, 51, 0.5)) fixed, url(../icon/heart.jpg) no-repeat;
+    /* margin: 0 130px 0 130px; */
+    /* width: 1280px; */
+    height: 200px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
+    /* background-blend-mode: screen;
+    background-size: cover; */
+    border-radius: 10px;
+  }
+
+  .search {
+    display: inline-block;
+    padding: 7px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    color: #FFF;
+    background-image: linear-gradient(#99cccc 0%, #72b5b5 100%);
+    transition: .4s;
+
+  }
+  .search:hover {
+    color:#fff;
+-webkit-transform: rotateX(360deg);
+  transform: rotateX(360deg);
+  }
 
 .header .logo {
   width: 120px;
@@ -66,10 +222,6 @@ select option:first-child {
   display: none;
 }
 
-.header {
-  background-color: #ea9034;
-}
-
 .trim {
   overflow: hidden;
   width: 80px;
@@ -81,9 +233,9 @@ select option:first-child {
 }
 .trim2 {
   overflow: hidden;
-  width: 150px;
+  width: 200px;
   /* トリミングしたい枠の幅 */
-  height: 150px;
+  height: 200px;
   /* トリミングしたい枠の高さ */
   -o-object-fit: contain;
      object-fit: contain;
@@ -113,6 +265,7 @@ select option:first-child {
   height: 100vh;
   position: absolute;
   width: 100%;
+  background: rgb(0, 0, 0, 0.5);
 }
 
 .modal__content {
@@ -138,3 +291,56 @@ select option:first-child {
 .audio {
      margin-right: 30px;
  }
+
+.meaning {
+    flex: 0 0 78.5%;
+    max-width: 100%;
+    position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.edit_items h1{
+color: #806850;
+
+}
+
+.edit_items a:hover{
+    color:red;
+    border-bottom: #dd0000;
+    text-decoration: none;
+}
+
+nav .balloon3-right-btm {
+    position: relative;
+    display: inline-block;
+    margin: 0.1em 40px -1.5em 0px;
+    padding: 0 5px;
+    width: 150px;
+    height: 60px;
+    line-height: 55px;
+    text-align: center;
+    font-size: 20px;
+    background: radial-gradient(#F2B9A1, #99cccc);
+    /* background: #99cccc; */
+    border-radius: 50%;
+    box-sizing: border-box;
+    font-style: italic;
+    color: #806850;
+    text-shadow: 1px 1px 1px rgb(50, 41, 0);
+    font-weight: 1500;
+  }
+
+  nav .balloon3-right-btm:before {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    right: 100px;
+    margin-top: -15px;
+    border: 15px solid transparent;
+    border-left: 15px solid #99ccccaa;
+    z-index: 0;
+    -webkit-transform: rotate(60deg);
+    transform: rotate(120deg);
+  }

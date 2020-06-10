@@ -55,7 +55,7 @@
 
 <div>
 <form>
-<a type="button" class="btn btn-primary col-md-1" href="{{ action('Front\MailController@replyForm', ['id' => $mail_form->id]) }}">返信</a>
+<a type="button" class="btn btn-green col-md-1" href="{{ action('Front\MailController@replyForm', ['id' => $mail_form->id]) }}">返信</a>
 <input type="button" value="戻る" class="btn btn-success col-md-1" onclick="location.href='{{ action('Front\MailController@inbox') }}'">
 </div>
 

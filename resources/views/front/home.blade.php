@@ -5,9 +5,22 @@
 @section('content')
     <div class="container">
         <div class="col-md-8 offset-md-2">
-            <div id="summary" class="mainBlock non-member hlt_SUMRY col-md-12">
+            <div id="summary" class="">
                 <div class="addLmFdWr" id="addLmFdWrHdId">
                     <div class="title p-2">
+                        <div class="form-group">
+                            {{--  <textarea class="form-control mainBlock non-member hlt_SUMRY col-md-12" id="formInputBody" name="body" value="{{ old('body') }}">{{ old('body') }}</textarea>  --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="col-md-8 offset-md-2">
+            <div id="summary" class="mainBlock">
+                <div class="addLmFdWr" id="addLmFdWrHdId">
+                    <div class="title p-2 edit_items">
                         @foreach($posts as $post)
                         @if($post->sound_path == null&&$post->image_path == null)
                         <a href="{{ action('Front\WordController@edit', ['id' => $post->id]) }}">
@@ -105,4 +118,45 @@
         </div>
     </div>
     </div>  --}}
+
+
+    {{-- <div class="popup" id="js-popup">
+        <div class="popup-inner">
+            <div class="close-btn" id="js-close-btn"><i class="fas fa-times"></i></div>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">Dashboard</div>
+
+                                <div class="card-body">
+                                    @if (session('status'))
+                                        <div class="alert alert-success" role="alert">
+                                            {{ session('status') }}
+                                        </div>
+                                    @endif
+
+                                    You are logged in!<br>引き続きプロフィール作成をお願いします。
+                                    <div class="float-right">
+                                        <a class="btn btn-primary" href="{{ action('Front\HomeController@isVerify', ['id' => Auth::user()->id]) }}">
+                                        Yes
+                                        </a>
+                                        <form id="logout-form" action="" method="POST" style="display: none;">
+                                            <input type="submit" class="btn btn-primary" value="更新">
+                                            @csrf
+                                        </form>
+                                        <button class="js-modal-close btn btn-danger">
+                                            No
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="black-background" id="js-black-bg">
+            </div>
+        </div>
+    </div> --}}
 @endsection

@@ -1,4 +1,4 @@
-@extends('layouts.front')
+{{-- @extends('layouts.front')
 <link rel="stylesheet" href="{{ asset('css/contents/contact.css') }}">
 
 @section('title', '登録済みニュースの一覧')
@@ -67,11 +67,11 @@
             </div>
         </div>
     </div>
-    
+
 
 
             </div>
         </div>
     </div>
 </div>
-@endsection('content')
+@endsection('content') --}}

@@ -25,13 +25,14 @@ Route::group(['prefix' => 'admin'], function() {
 Route::group(['prefix' => 'front'], function() {
     Route::get('word/index', 'Front\WordController@index');
     Route::get('word/add', 'Front\WordController@add');
-    Route::post('/keyboard', 'Front\WordController@create');
     Route::get('word/edit', 'Front\WordController@edit');
     Route::post('word/edit', 'Front\WordController@update');
     Route::get('word/delete', 'Front\WordController@delete');
+    Route::post('word/save', 'Front\WordController@save');
 
 });
-
+Route::get('/add', 'Front\WordController@add')->name('add');
+Route::post('/add', 'Front\WordController@create');
 // FrontCategories
 Route::group(['prefix' => 'front'], function() {
     Route::get('categories', 'Front\CategoriesController@categories')->name('categories');
@@ -39,38 +40,24 @@ Route::group(['prefix' => 'front'], function() {
 
 // FrontFlashCard
 Route::group(['prefix' => 'front'], function() {
-    Route::get('flashcard', 'Front\FlashCardController@flashcard')->name('flashcard');
+    Route::get('flashcard', 'Front\FlashCardController@index')->name('flashcard');
+    // Route::get('flashcard/game', 'Front\FlashCardController@game');
 });
+
+Route::get('flashcard/start', 'Front\FlashCardController@start');
+Route::get('flashcard/search', 'Front\FlashCardController@search')->name('mycard');
+Route::post('flashcard/start', 'Front\FlashCardController@game');
 
 // FrontContact
 Route::group(['prefix' => 'front'], function() {
     Route::get('contact/add', 'Front\ContactController@add')->name('contact');
     Route::post('contact/add', 'Front\ContactController@create');
-    Route::get('/keyboard', 'Front\HomeController@keyboard')->name('add');
+    // Route::get('/keyboard', 'Front\HomeController@keyboard')->name('add');
 });
 
 
-// その他
-Auth::routes();
-Route::get('/', 'Front\HomeController@index')->middleware('auth')->name('/');
-Route::get('admin', 'Admin\UserController@home')->middleware('auth')->name('admin');
-Route::get('admin/inbox', 'Admin\UserController@inbox')->name('adminInbox');
-Route::get('/refresh_captcha', 'Auth\LoginController@refreshCaptcha')->name('refresh');
-Route::get('/mailsend', 'SampleController@send');
-Route::post('/login/custom', [
-    'uses' => 'Auth\MyLoginController@login',
-    'as' => 'login.custom'
-    ]);
-
-Route::group(['middleware' => 'auth'], function() {
-
-    Route::get('/', 'Front\HomeController@index')->middleware('auth')->name('home');
-
-    Route::get('/dashboard', function() {
-        return view('dashboard');
-    })->name('dashboard');
-
-});
+Route::get('changePassword', 'Front\HomeController@showChangePasswordForm');
+Route::post('changePassword', 'Front\HomeController@changePassword')->name('changePassword');
 
 
 
@@ -100,6 +87,9 @@ Route::get('/profile', 'Front\HomeController@profile')->name('profile');
 Route::get('profile/edit', 'Front\HomeController@edit')->name('edit');
 
 
+// Route::post('/home', 'Front\HomeController@isVerify');
+
+
 // メール
 Route::get('/inbox', 'Front\MailController@inbox')->name('inbox');
 Route::get('/mail', 'Front\MailController@form')->name('receive');
@@ -112,6 +102,28 @@ Route::get('inbox/delete', 'Front\MailController@delete');
 Route::get('inbox/unread', 'Front\MailController@unread');
 Route::get('inbox/detail', 'Front\MailController@detail');
 
+// その他
+Auth::routes();
+Route::get('/', 'Front\HomeController@index')->middleware('auth')->name('/');
+Route::get('admin', 'Admin\UserController@home')->middleware('auth')->name('admin');
+Route::get('admin/inbox', 'Admin\UserController@inbox')->name('adminInbox');
+Route::get('/refresh_captcha', 'Auth\LoginController@refreshCaptcha')->name('refresh');
+Route::get('/mailsend', 'SampleController@send');
+Route::post('/login/custom', [
+    'uses' => 'Auth\MyLoginController@login',
+    'as' => 'login.custom'
+    ]);
+
+Route::group(['middleware' => 'auth'], function() {
+
+    Route::get('/', 'Front\HomeController@index')->middleware('auth')->name('home');
+
+    // Route::get('/dashboard', function() {
+    //     return view('dashboard');
+    // })->name('dashboard');
+
+});
+
 
 // 練習
 Route::get('profile/edit', 'PracticeController@show');
@@ -119,7 +131,6 @@ Route::get('/delete/{id}', 'PracticeController@deleteMemo')->name('delete');
 Route::get('/p', 'PracticeController@showPractice');
 Route::get('/pp', 'PracticeController@showSubmit');
 Route::get('/ppp', 'PracticeController@postSubmit');
-Route::get('/keyboard', 'Front\HomeController@keyboard')->name('add');
 
 Route::get('/redirect', 'SocialAuthFacebookController@redirect');
 Route::get('/callback', 'SocialAuthFacebookController@callback');

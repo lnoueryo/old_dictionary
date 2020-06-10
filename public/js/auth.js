@@ -104,6 +104,14 @@ $(function () {
 });
 
 window.onload = function () {
+
+    var count = 180;
+    var id = setInterval(function(){
+      count--;
+      document.querySelector('#timer').textContent=count;
+      if(count <= 0) clearInterval(id);
+    },1000);
+
   var popup = document.getElementById('js-popup');
   if (!popup) return;
   popup.classList.add('is-show');
@@ -119,6 +127,13 @@ window.onload = function () {
     });
   }
 };
+
+
+
+
+
+
+
 
 /***/ }),
 

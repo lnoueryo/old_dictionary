@@ -1,3 +1,88 @@
+body {
+
+    position: relative;
+    background: linear-gradient(175deg, rgb(255, 204, 153), rgba(233, 154, 51, 0.5)) fixed, url(../icon/man.jpg) no-repeat;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
+    /* background-blend-mode: screen;
+    background-size: cover; */
+    border-radius: 10px;
+
+}
+
+h1 {
+    font-style: italic;
+    color: #806850;
+    text-shadow: 1px 1px 1px rgb(50, 41, 0);
+    font-weight: 1500;
+
+}
+
+.balloon3-right-btm {
+    position: relative;
+    display: inline-block;
+    margin: 1.5em 15px -1.5em 300px;
+    padding: 0 5px;
+    width: 150px;
+    height: 90px;
+    line-height: 90px;
+    text-align: center;
+    color: #FFF;
+    font-size: 20px;
+    font-weight: bold;
+    background: radial-gradient(#F2B9A1, #99cccc);
+    /* background: #99cccc; */
+    border-radius: 50%;
+    box-sizing: border-box;
+    font-style: italic;
+    text-shadow: 0.3px 0.3px 0.3px rgb(50, 41, 0);
+  }
+
+  .balloon3-right-btm:before {
+    content: "";
+    position: absolute;
+    bottom: -21px;
+    right: 100px;
+    margin-top: -15px;
+    border: 15px solid transparent;
+    border-left: 15px solid #99ccccaa;
+    z-index: 0;
+    -webkit-transform: rotate(60deg);
+    transform: rotate(110deg);
+  }
+
+nav .balloon3-right-btm {
+    position: relative;
+    display: inline-block;
+    margin: 0.1em 40px -1.5em 0px;
+    padding: 0 5px;
+    width: 150px;
+    height: 60px;
+    line-height: 55px;
+    text-align: center;
+    font-size: 20px;
+    background: radial-gradient(#F2B9A1, #99cccc);
+    /* background: #99cccc; */
+    border-radius: 50%;
+    box-sizing: border-box;
+    font-style: italic;
+    color: #806850;
+    text-shadow: 1px 1px 1px rgb(50, 41, 0);
+    font-weight: 1500;
+  }
+
+  nav .balloon3-right-btm:before {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    right: 100px;
+    margin-top: -15px;
+    border: 15px solid transparent;
+    border-left: 15px solid #99ccccaa;
+    z-index: 0;
+    -webkit-transform: rotate(60deg);
+    transform: rotate(120deg);
+  }
+
 #remember {
   margin-top: 11px;
 }

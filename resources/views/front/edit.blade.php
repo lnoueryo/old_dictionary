@@ -55,6 +55,11 @@
                     <input class="form-control" type="text" name="nickname" value="{{ Auth::user()->nickname }}">
                     </div>
                 </div>
+                @if ($errors->has('nickname'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('nickname') }}</strong>
+                        </span>
+                    @endif
                 <div class="form-group">
                     <div class="secondItem mr-4">
                         <label class="control-label" for="gender">性別</label>
@@ -127,6 +132,12 @@
                     <div class="firstItem">
                         <label class="control-label" for="age">年齢</label>
                         <input class="form-control col-md-6" name="age" type="text"　value="{{ Auth::user()->age }}">
+
+                        @if ($errors->has('age'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('age') }}</strong>
+                        </span>
+                    @endif
                     </div>
                   </div>
 
@@ -349,7 +360,7 @@
                         <input type="hidden" name="password" value="{{ Auth::user()->password }}">
                         <input type="hidden" name="email" value="{{ Auth::user()->email }}">
                         {{ csrf_field() }}
-                        <input type="submit" class="btn btn-primary" value="更新">
+                        <input type="submit" class="btn btn-green" value="更新">
                     </div>
                 </div>
             </form>

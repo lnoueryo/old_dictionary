@@ -6,10 +6,10 @@
 
 @section('content')
 
-<div class="container col-md-6">
-<h3 class="">プロフィール</h3>
+<div class="container">
+<h3>プロフィール</h3>
 <div style="margin-top: 30px;">
-
+    <div id="summary" class="mainBlock col-md-8 offset-md-2">
 <table class="table table-striped">
     <tr>
         <th>氏名</th>
@@ -49,12 +49,12 @@
     </tr>
     <tr>
 <th></th>
-            <td class="col-md-5 float-right"><input type="button" value="編集" class="btn btn-primary col-md-8" onclick="location.href='{{ action('PracticeController@show') }}'"></td>
+            <td class="col-md-5 float-right"><input type="button" value="編集" class="btn btn-green col-md-8" onclick="location.href='{{ action('PracticeController@show') }}'"></td>
     </tr>
 
 </table>
 </div>
 </div>
-
+</div>
 @endsection('content')
 

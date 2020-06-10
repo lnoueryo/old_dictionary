@@ -6,25 +6,25 @@
     <div class="popup-inner">
       <div class="close-btn" id="js-close-btn"><i class="fas fa-times"></i></div>
       {{-- <a href="#"><img src="./img/popup.jpg" alt="ポップアップ画像"></a> --}}
-      <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Dashboard</div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">Dashboard</div>
 
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
+                        <div class="card-body">
+                            @if (session('status'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
 
-                        You are logged in!<br>引き続きプロフィール作成をお願いします。
+                            You are logged in!<br>引き続きプロフィール作成をお願いします。
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <div class="black-background" id="js-black-bg">
 
@@ -50,12 +50,18 @@
                     </div>
                 </div>
 
-                <div class="form-group @if(!empty($errors->first('nickname'))) has-error @endif">
+                <div class="form-group">
                     <div class="firstItem">
-                    <label class="control-label" for="nickname">ニックネーム</label>
-                    <input class="form-control @if(!empty($errors->first('nickname'))) has-error @endif" type="text" name="nickname" value="{{ Auth::user()->name }}">
+                    <label class="control-label" for="nickname" maxlength="20">ニックネーム</label>
+                    <input class="form-control" type="text" name="nickname" value="{{ Auth::user()->name }}">
                     </div>
                 </div>
+                    @if ($errors->has('nickname'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('nickname') }}</strong>
+                        </span>
+                    @endif
+
                 <div class="form-group">
                     <div class="secondItem mr-4">
                         <label class="control-label" for="gender">性別</label>

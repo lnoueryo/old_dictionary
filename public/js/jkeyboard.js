@@ -158,13 +158,14 @@
     }
   };
   var layouts = {
-    selectable: ['azeri', 'english', 'russian'],
+    selectable: ['azeri', 'english', 'chinese'],
     azeri: [['q', 'ü', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'ö', 'ğ'], ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'ı', 'ə'], ['shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'ç', 'ş', 'backspace'], ['numeric_switch', 'layout_switch', 'space', 'return']],
     english: [['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p','ð','ʃ','ʒ','ʧ'], ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l','θ','ʌ','æ','ɑ'], ['shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm','ɔ', 'ə', 'ː', 'backspace'], ['numeric_switch', 'layout_switch', 'space', 'return']],
     russian: [['й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х','ʤ','ŋ',"ɛ"], ['ʊ','ʁ','ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э'], ['shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', 'backspace'], ['numeric_switch', 'layout_switch', 'space', 'return']],
     numeric: [['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'], ['-', '/', ':', ';', '(', ')', '$', '&', '@', '"'], ['symbol_switch', '.', ',', '?', '!', "'", 'backspace'], ['character_switch', 'layout_switch', 'space', 'return']],
     numbers_only: [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9'], ['0', 'return', 'backspace']],
-    symbolic: [['[', ']', '{', '}', '#', '%', '^', '*', '+', '='], ['_', '\\', '|', '~', '<', '>'], ['numeric_switch', '.', ',', '?', '!', "'", 'backspace'], ['character_switch', 'layout_switch', 'space', 'return']]
+    symbolic: [['[', ']', '{', '}', '#', '%', '^', '*', '+', '='], ['_', '\\', '|', '~', '<', '>'], ['numeric_switch', '.', ',', '?', '!', "'", 'backspace'], ['character_switch', 'layout_switch', 'space', 'return']],
+    chinese: [['a', 'ā', 'á', 'ǎ', 'à', 'b', 'c', 'd', 'e', 'ē', 'é', 'ě', 'è', 'f'], ['g', 'h', 'i', 'ī', 'í', 'ǐ', 'ì', 'j', 'k', 'l', 'm', 'n', 'o', 'ō'], ['ó', 'ǒ', 'ò', 'p', 'q', 'r', 's', 't', 'u', 'ū', 'ú', 'ǔ', 'ù'],['numeric_switch', 'ü', 'ǖ', 'ǘ', 'ǚ', 'ǜ', 'w', 'x', 'y', 'z',"'", 'backspace'], ['character_switch', 'layout_switch', 'space', 'return']],
   };
   var shift = false,
       capslock = false,

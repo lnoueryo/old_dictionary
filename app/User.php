@@ -15,7 +15,7 @@ class User extends Authenticatable
     use Notifiable;
 
     use Sortable;
-    public $sortable = ['id', 'name', 'gender', 'country', 'email', 'login_counter','last_sign_in_at','current_sign_in_at',];
+    public $sortable = ['id', 'name', 'gender', 'country', 'email', 'login_counter','last_sign_in_at','current_sign_in_at','search_time',];
 
     /**
      * The attributes that are mass assignable.
@@ -59,3 +59,4 @@ class User extends Authenticatable
 
 
 }
+// (new Carbon(Carbon::now()))->addMinutes(10);

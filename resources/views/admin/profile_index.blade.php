@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-<link rel="stylesheet" href="{{ asset('css/front.css') }}">
+{{-- <link rel="stylesheet" href="{{ asset('css/front.css') }}"> --}}
 @section('title', '登録済みニュースの一覧')
 
 @section('content')
@@ -10,17 +10,45 @@
         <div class="row">
             <div class="col-md-4">
                 <a href="" role="button" class="btn btn-primary">新規作成</a>
+                <p><br>{{ $cc }}<span>件</span></p>
             </div>
             <div class="col-md-8">
                 <form action="{{ action('Admin\UserController@profile') }}" method="get">
                     <div class="form-group row">
-                        <label class="col-md-2">タイトル</label>
+                        <label class="col-md-2">国籍</label>
+                        <div class="col-md-3">
+                            <select class="form-control" id="cond_user_country" name="cond_user_country" value="{{ $cond_user_country }}">
+                                　<option value="{{ $cond_user_country }}">{{ $cond_user_country }}</option>
+                                　<option value="日本">日本</option>
+                                　<option value="ドイツ">ドイツ</option>
+                                　<option value="アメリカ合衆国">アメリカ合衆国</option>
+                                　<option value="イギリス">イギリス</option>
+                                　<option value="">なし</option>
+                            </select>
+                        </div>
+                        <label class="col-md-2">性別</label>
+                        <div class="col-md-3">
+                            <select class="form-control" id="cond_user_gender" name="cond_user_gender" value="{{ $cond_user_gender }}">
+                                　<option value="{{ $cond_user_gender }}">{{ $cond_user_gender }}</option>
+                                　<option value="男性">男性</option>
+                                　<option value="女性">女性</option>
+                                　<option value="その他">その他</option>
+                                　<option value="">なし</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="{{ route('dashboard') }}" role="button" class="btn btn-danger">リセット</a>
+                            {{--  <input type="submit" class="btn btn-danger" value="リセット">  --}}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2">フリーワード</label>
                         <div class="col-md-8">
                             <input type="text" class="form-control" name="cond_user" value={{ $cond_user }}>
                         </div>
                         <div class="col-md-2">
                             {{ csrf_field() }}
-                            <input type="submit" class="btn btn-primary" value="検索">
+                            <input type="submit" class="btn btn-primary" value="　検索　">
                         </div>
                     </div>
                 </form>
@@ -77,23 +105,5 @@
             </div>
         </div>
     </div>
-    {{--  <div class="modal js-modal">
-        <div class="modal__bg js-modal-close">
-        <div class="modal__content">
-            <p>ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p>
 
-                <div class="float-right">
-                    <button class="btn btn-danger">
-                        <a href="{{ action('Admin\UserController@delete', ['id' => $user->id]) }}">Yes</a>
-                    </button>
-                    <button class="js-modal-close btn btn-danger">
-                        No
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-{{--  <div id="js-modal-open" type="button">  --}}
-    {{--  {{ action('Admin\UserController@delete', ['id' => $user->id]) }}  --}}
 @endsection('content')

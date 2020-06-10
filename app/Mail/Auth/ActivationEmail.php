@@ -8,6 +8,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\User;
 
+
 class ActivationEmail extends Mailable
 {
     use Queueable, SerializesModels;

@@ -54,7 +54,7 @@
                                     <td>
                                         <a class="delete" href="{{ action('Front\MailController@delete', ['id' => $mail->id]) }}"><div class="text-danger">削除</div></a>
 
-                                        <a class="delete" href="{{ action('Front\MailController@unread', ['id' => $mail->id]) }}"><div class="text-danger">未読</div></a>
+                                        <a class="unread" href="{{ action('Front\MailController@unread', ['id' => $mail->id]) }}"><div class="text-danger">未読</div></a>
                                     </td>
                                     <td></td>
                                 </tr></a>

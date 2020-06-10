@@ -49,6 +49,9 @@
 .jkeyboard .jline .numeric_switch {
   width: 84px;
 }
+.jkeyboard .jline .chinese_keyboard {
+    width: 456px;
+}
 .jkeyboard .jline .layout_switch {
   background: url("../assets/locale.png") no-repeat center right;
 }

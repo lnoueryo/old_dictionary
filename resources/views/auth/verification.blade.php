@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<meta http-equiv="refresh" content=" 180; url=../">
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -31,6 +31,7 @@
                                     click
                                 </button>
                                 <a href="" data-toggle="modal" data-target="#exampleModal" style="margin-left">Resend OTP</a>
+                                <div class="float-right mr-5"><span class="float-left">残り</span><div id="timer" class="float-left">180</div><span>秒</span></div>
                             </div>
                         </div>
                     </form>
@@ -39,6 +40,19 @@
         </div>
     </div>
 </div>
+    {{-- <script>
+            window.onload=function(){
+
+                  var count = 180;
+                  var id = setInterval(function(){
+                    count--;
+                    document.querySelector('#timer').textContent=count;
+                    if(count <= 0) clearInterval(id);
+                  },1000);
+
+              }
+        </script> --}}
+
 {{--  <!-- Modal -->  --}}
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -51,7 +65,7 @@
       </div>
       <div class="modal-body">
 
-        <form method="post" action=" {{ action('UserController@postResend') }}">
+        <form method="post" action="{{ action('UserController@postResend') }}">
             @csrf
             <div class="form-group">
               <label for="exampleInputEmail1">Resend Email</label>

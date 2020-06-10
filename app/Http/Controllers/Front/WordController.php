@@ -12,6 +12,7 @@ use App\Events\SearchTimeCounter;
 use App\Events\CreateWordTimeCounter;
 use App\Events\EditWordTimeCounter;
 use Illuminate\Support\Facades\Auth;
+use App\Flashcard;
 
 class WordController extends Controller
 {
@@ -20,7 +21,9 @@ class WordController extends Controller
 
         $cond_name = $request->cond_name;
         if ($cond_name != '') {
-            $posts = Name::where('name', 'like', '%' .$cond_name. '%')->get();
+            $posts = Name::where('name', 'like', '%' .$cond_name. '%')->
+            orWhere('meaning', 'like', '%' .$cond_name. '%')->
+            get();
 
             } else {
                 $posts = Name::all();
@@ -36,7 +39,9 @@ class WordController extends Controller
     }
 
     public function add() {
+
         return view('front.word.add');
+
     }
 
 
@@ -75,7 +80,7 @@ class WordController extends Controller
             event(new CreateWordTimeCounter($user));
 
 
-        return redirect('/keyboard');
+        return redirect('/add');
     }
 
     public function edit(Request $request)
@@ -86,39 +91,6 @@ class WordController extends Controller
       }
       return view('front.word.edit', ['name_form' => $name]);
   }
-
-//   public function update(Request $request)
-//   {
-
-
-//       $this->validate($request, Name::$rules);
-//         $name = Name::find($request->id);
-//         $name_form = $request->all();
-
-//         if (isset($name_form['image'])) {
-//             $path = $request->file('image')->store('public/image');
-//             $name->image_path = basename($path);
-//             unset($name_form['image']);
-//           } elseif (isset($request->remove)) {
-//             $name->image_path = null;
-//             unset($name_form['remove']);
-//           }
-//           unset($name_form['_token']);
-
-//         $name->update($request->all());
-
-//       $history = new History;
-//       $history->name_id = $name->id;
-//       $history->edited_at = Carbon::now();
-//       $history->save();
-
-//       $user = User::find($request->id);
-//       event(new EditWordTimeCounter($user));
-
-
-
-//       return direct('front/word/edit');
-//   }
 
   public function update(Request $request)
   {
@@ -147,4 +119,55 @@ class WordController extends Controller
 
       return redirect('/');
   }
+
+  public function save(Request $request) {
+    //   dd(null);
+    $name = Name::find($request->id);
+    $user = User::find(Auth::user()->id);
+    $flashcards = Flashcard::where('user_id', $user->id)->where('name_id', $request->id)->get();
+
+
+    $value = 0;
+    $value1 = 2;
+    $count = count($flashcards, COUNT_RECURSIVE);
+
+    if($count == $value) {
+
+        $flashcard = new Flashcard;
+        $flashcard->name = $name->name;
+        $flashcard->name_id = $name->id;
+        $flashcard->language = $name->language;
+        $flashcard->parts_of_speech = $name->parts_of_speech;
+        $flashcard->phonetic_symbol = $name->phonetic_symbol;
+        $flashcard->meaning = $name->meaning;
+        $flashcard->image_path = $name->image_path;
+        $flashcard->sound_path = $name->sound_path;
+        $flashcard->user_id = $user->id;
+        $flashcard->card_type = 1;
+        $flashcard->next_day = Carbon::today();
+        $flashcard->save();
+
+        $flashcard2 = new Flashcard;
+        $flashcard2->name = $name->name;
+        $flashcard2->name_id = $name->id;
+        $flashcard2->language = $name->language;
+        $flashcard2->parts_of_speech = $name->parts_of_speech;
+        $flashcard2->phonetic_symbol = $name->phonetic_symbol;
+        $flashcard2->meaning = $name->meaning;
+        $flashcard2->image_path = $name->image_path;
+        $flashcard2->sound_path = $name->sound_path;
+        $flashcard2->user_id = $user->id;
+        $flashcard2->card_type = 2;
+        $flashcard2->next_day = Carbon::today();
+        $flashcard2->save();
+    } elseif($count = $value1) {
+
+        return redirect()->route('home');
+    }
+
+
+    return redirect('front/word/index/');
+    // ->except(['id', 'user_id', 'created_at', 'updated_at'])
+}
+
 }

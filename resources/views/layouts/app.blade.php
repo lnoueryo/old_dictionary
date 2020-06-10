@@ -11,9 +11,12 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    {{--  <script src="{{ asset('js/app.js') }}" defer></script>  --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    {{--  <script src="{{ asset('js/auth.js') }}" defer></script>  --}}
+
+    {{-- キャプチャの作動に関係↓ --}}
+     {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
+
+     <script src="{{ asset('js/auth.js') }}" defer></script>
 
 
     <!-- Fonts -->
@@ -25,12 +28,13 @@
     <link href="{{ asset('css/auth.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
+    {{-- <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -56,7 +60,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->nickname }} <span class="caret"></span>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -75,23 +79,24 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> --}}
 
         <main class="py-4">
             @yield('content')
         </main>
     </div>
 
+    {{-- ログイン、新規のCAPTCHAリフレッシュ --}}
     <script>
-$('.btn-refresh').click(function () {
-$.ajax({
-    type: 'GET',
-    url: '{{  url('/refresh_captcha') }}',
-    success: function (data) {
-$('.captcha span').html(data);
-    }
-});
-});
+        $('.btn-refresh').click(function () {
+        $.ajax({
+            type: 'GET',
+            url: '{{  url('/refresh_captcha') }}',
+            success: function (data) {
+        $('.captcha span').html(data);
+            }
+        });
+        });
     </script>
 </body>
 </html>

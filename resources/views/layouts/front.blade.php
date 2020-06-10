@@ -11,6 +11,7 @@
         <title>@yield('title')</title>
 
         <script src="{{ asset('js/ex01.js') }}" defer></script>
+        <script src="{{ asset('js/app.js') }}" defer></script>
         <link rel="dns-prefetch" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
@@ -20,6 +21,7 @@
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha256-WqU1JavFxSAMcLP2WIOI+GB2zWmShMI82mTpLDcqFUg=" crossorigin="anonymous"></script> -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/front.css') }}">
+        {{-- <link rel="stylesheet" href="{{ asset('css/auth.css') }}"> --}}
         <link rel="stylesheet" href="{{ asset('css/cropper.css') }}">
         <link rel="stylesheet" href="{{ asset('css/contents/word.css') }}">
         <link rel="stylesheet" href="{{ asset('css/jkeyboard.css') }}">
@@ -32,18 +34,19 @@
     <body>
         <div id="app">
         <div class="header">
-            <nav class="navbar navbar-expand-lg navbar-dark">
+            <nav class="navbar navbar-expand-lg main_nav">
                 <div class="container">
                     @if(Auth::user()->admin == false)
-                    <a class="navbar-brand" href="{{ route('home') }}"><h2>𒄀𒋏𒄊</h2></a>
+                    <a class="navbar-brand" href="{{ route('home') }}"><h2>My Turn to Blab</h2></a>
                     @else
-                    <a class="navbar-brand" href="{{ route('admin') }}"><h2>𒄀𒋏𒄊</h2></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <a class="navbar-brand" href="{{ route('admin') }}"><h2 class="balloon3-right-btm">Blah Blah</h2></a>
+                    @endif
+                    {{-- 𒄀𒋏𒄊 --}}
+                    <button class="navbar-toggler mt-3" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    @endif
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
+                    <div class="collapse navbar-collapse mt-3" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto main_nav">
                             <li class="nav-item">
                             <a class="nav-link" href="{{ route('home') }}">Home</a>
                             </li>
@@ -63,15 +66,22 @@
                         <ul class="navbar-nav ml-auto">
                             <div class="flex-center position-ref full-height">
                                 @if (Route::has('login'))
-                                    <div class="top-right links">
+                                    <div class="top-right links dropdown">
                                         @auth
-                                            <li class="nav-item dropdown">
+                                            <li class="nav-item">
                                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                                    {{ Auth::user()->nickname }} <span class="caret"></span>
+                                                    @if(isset(Auth::user()->nickname))
+                                                    {{ Auth::user()->nickname }}
+                                                    @else
+                                                    {{ Auth::user()->name }}
+                                                    @endif
                                                 </a>
-                                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <div class="dropdown-menu inside" aria-labelledby="navbarDropdown">
                                                     <a class="dropdown-item" href="{{ route('profile') }}">
                                                         {{ __('プロフィール') }}
+                                                    </a>
+                                                    <a class="dropdown-item" href="{{ route('changePassword') }}">
+                                                        {{ __('パスワード変更') }}
                                                     </a>
                                                     <a class="dropdown-item" href="{{ route('inbox') }}">
                                                         {{ __('メール') }}
@@ -101,14 +111,14 @@
             <div class="searchbar col-md-12 p-2">
                 <div class="col-md-8 offset-md-4">
                     <form action="{{ action('Front\WordController@index') }}" method="get">
-                        <div class="form-group row">
+                        <div class="form-group row  mt-3">
                             <div class="col-md-4">
                                 <input type="text" class="form-control" name="cond_name" placeholder="単語を検索">
                             </div>
                             <div class="col-md-2">
                                 {{ csrf_field() }}
                                 {{--  <input type="hidden" name="id" value="{{ Auth::user()->id }}">  --}}
-                                <input type="submit" class="btn btn-primary" value="検索">
+                                <input type="submit" class="btn search" value="検索">
                             </div>
                         </div>
                     </form>
@@ -116,18 +126,15 @@
             </div>
             <div class="modal js-modal">
                 <div class="modal__bg js-modal-close">
-                <div class="modal__content">
-                    <p>ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p>
-
+                    <div class="modal__content">
+                        <h5>ログアウトします。よろしいですか？</h5>
                         <div class="float-right">
-
-                                <a class="btn btn-primary" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                Yes
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-
+                            <a class="btn btn-primary" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            Yes
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                             <button class="js-modal-close btn btn-danger">
                                 No
                             </button>

@@ -14,24 +14,92 @@ class UserController extends Controller
     public function profile(Request $request)
   {
       $cond_user = $request->cond_user;
+      $cond_user_country = $request->cond_user_country;
+      $cond_user_gender = $request->cond_user_gender;
+
       if ($cond_user != '') {
-          $userPosts = User::where('name', 'like', '%' .$cond_user. '%')
-          ->orWhere('email', 'like',  $cond_user. '%')
-          ->orWhere('country', 'like', '%' .$cond_user. '%')
-          ->orWhere('nickname', 'like',  $cond_user. '%')->get();
-      } else {
-        $userPosts = User::all();
-        $userPosts = User::sortable()->paginate(5);
-      }
 
-    //   if(Auth::user()->id == 21) {
-    //     return view('admin.profile_index', ['userPosts' => $userPosts, 'cond_user' => $cond_user]);
-    //   } else {
-    //     return redirect()->back();
-    //   }
+          if ($cond_user_country !='') {
+
+              if ($cond_user_gender !='') {
+                  $userPosts = User::sortable()->where('country', $cond_user_country)->
+                    where('gender', $cond_user_gender)->
+                    where(function ($query) use ($cond_user) {
+                        $query->where('name', 'like', '%' .$cond_user. '%')
+                        ->orWhere('email', 'like', $cond_user. '%')
+                        ->orWhere('nickname', 'like', $cond_user. '%');
+                    })->get();
+
+                } else {
+                    $userPosts = User::sortable()->where('country', $cond_user_country)->
+                        where(function ($query) use ($cond_user) {
+                            $query->where('name', 'like', '%' .$cond_user. '%')
+                            ->orWhere('email', 'like', $cond_user. '%')
+                            ->orWhere('nickname', 'like', $cond_user. '%');
+                        })->get();
+                }
+            }
+
+          if ($cond_user_country =='') {
+
+              if ($cond_user_gender !='') {
+                  $userPosts = User::sortable()->
+                    where('gender', $cond_user_gender)->
+                    where(function ($query) use ($cond_user) {
+                        $query->where('name', 'like', '%' .$cond_user. '%')
+                        ->orWhere('email', 'like', $cond_user. '%')
+                        ->orWhere('nickname', 'like', $cond_user. '%');
+                    })->get();
+
+                } else {
+                    $userPosts = User::sortable()->where('country', $cond_user_country)->
+                        where(function ($query) use ($cond_user) {
+                            $query->where('name', 'like', '%' .$cond_user. '%')
+                            ->orWhere('email', 'like', $cond_user. '%')
+                            ->orWhere('nickname', 'like', $cond_user. '%');
+                        })->get();
+                }
+            }
 
 
-        return view('admin.profile_index', ['userPosts' => $userPosts, 'cond_user' => $cond_user]);
+
+
+    }
+
+    if ($cond_user == '') {
+
+        if ($cond_user_country !='') {
+
+            if ($cond_user_gender !='') {
+                $userPosts = User::sortable()->where('country', $cond_user_country)->
+                  where('gender', $cond_user_gender)->
+                  get();
+
+              } else {
+                  $userPosts = User::sortable()->where('country', $cond_user_country)->
+                      get();
+              }
+          }
+
+        if ($cond_user_country =='') {
+
+            if ($cond_user_gender !='') {
+                $userPosts = User::sortable()->
+                  where('gender', $cond_user_gender)->
+                  get();
+
+              } else {
+                  $userPosts = User::sortable()->
+                      get();
+              }
+          }
+  }
+
+  $cc = count($userPosts, COUNT_RECURSIVE);
+
+
+
+        return view('admin.profile_index', ['cond_user_gender' =>$cond_user_gender,'cc' => $cc,'userPosts' => $userPosts, 'cond_user' => $cond_user, 'cond_user_country' => $cond_user_country]);
   }
 
 
